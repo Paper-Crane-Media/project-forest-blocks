@@ -1,0 +1,17 @@
+{
+	"name": "acf/forest-cta",
+	"title": "Forest CTA",
+	"description": "Call-to-action section with display heading, decorative forest silhouette, and a dark card with content and CTA buttons.",
+	"category": "forest-blocks",
+	"icon": "admin-site-alt3",
+	"keywords": [ "cta", "forest", "call-to-action", "buttons" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/forest-cta/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

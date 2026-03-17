@@ -1,0 +1,17 @@
+{
+  "name": "acf/video-block",
+  "title": "Video Block",
+  "description": "Hero card with heading, CTA, and a video thumbnail that opens a YouTube lightbox via Fancybox.",
+  "category": "forest-blocks",
+  "icon": "video-alt3",
+  "keywords": ["video", "youtube", "lightbox", "fancybox"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/video-block/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}

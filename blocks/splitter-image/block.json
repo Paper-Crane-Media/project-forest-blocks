@@ -1,0 +1,17 @@
+{
+	"name": "acf/splitter-image",
+	"title": "Splitter Image",
+	"description": "Two-column split layout with text and image. Default: white bg, text left / image right. CTA Card variant: forest bg with pattern, image left / text right inside an elevated card.",
+	"category": "forest-blocks",
+	"icon": "columns",
+	"keywords": [ "splitter", "image", "two-column", "split" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/splitter-image/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

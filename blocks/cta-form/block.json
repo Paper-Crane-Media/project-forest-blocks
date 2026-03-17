@@ -1,0 +1,17 @@
+{
+	"name": "acf/cta-form",
+	"title": "CTA Form",
+	"description": "Dark forest CTA section with decorative geo-wave banner and embedded Gravity Form.",
+	"category": "forest-blocks",
+	"icon": "email-alt",
+	"keywords": [ "cta", "form", "contact", "gravity" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/cta-form/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

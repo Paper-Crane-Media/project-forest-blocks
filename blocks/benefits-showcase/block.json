@@ -1,0 +1,17 @@
+{
+	"name": "acf/benefits-showcase",
+	"title": "Benefits Showcase",
+	"description": "Two-column layout with sticky left column (desktop) containing heading and SDG icons, and scrolling right column with feature cards showing benefits.",
+	"category": "forest-blocks",
+	"icon": "grid",
+	"keywords": [ "benefits", "showcase", "two-column", "sticky", "sdg" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/benefits-showcase/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

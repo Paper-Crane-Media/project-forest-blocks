@@ -1,0 +1,17 @@
+{
+	"name": "acf/event-section",
+	"title": "Event Section",
+	"description": "Dark forest hero with text, features checklist, image mosaic, decorative trees, and fire CTA bar.",
+	"category": "forest-blocks",
+	"icon": "palmtree",
+	"keywords": [ "event", "section", "program", "features", "gallery" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/event-section/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

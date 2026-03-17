@@ -1,0 +1,17 @@
+{
+  "name": "acf/metrics-gallery",
+  "title": "Metrics & Gallery",
+  "description": "Side-by-side layout with metrics grid on the left and image gallery slider on the right.",
+  "category": "forest-blocks",
+  "icon": "grid-view",
+  "keywords": ["metrics", "gallery", "slider", "stats"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/metrics-gallery/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}

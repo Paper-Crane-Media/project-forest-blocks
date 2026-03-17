@@ -1,0 +1,17 @@
+{
+	"name": "acf/hero-header",
+	"title": "Hero Header",
+	"description": "Full-width hero with background image, display heading, feature cards, and CTA.",
+	"category": "forest-blocks",
+	"icon": "cover-image",
+	"keywords": [ "hero", "header", "banner" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/hero-header/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

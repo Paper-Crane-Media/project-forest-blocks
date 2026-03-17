@@ -1,0 +1,17 @@
+{
+	"name": "acf/step-section",
+	"title": "Step Section",
+	"description": "Sticky scroll section with numbered step cards on the right and an image that swaps per step on the left. Dark forest header with tree silhouette parallax.",
+	"category": "forest-blocks",
+	"icon": "editor-ol",
+	"keywords": [ "steps", "process", "sticky", "scroll", "how-it-works" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/step-section/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

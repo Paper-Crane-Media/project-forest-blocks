@@ -1,0 +1,515 @@
+@import 'swiper/css';
+
+/* ==========================================================================
+   Design Tokens — sourced from the Project Forest Figma variables.
+   Defined on .fb so they're scoped to plugin blocks.
+   ========================================================================== */
+
+.fb {
+	/* ── Colors: Brand ────────────────────────────────────────────────── */
+	--fb-color-forest: #003b45;
+	--fb-color-forest-80: #0c606d;
+	--fb-color-forest-60: #00bbc9;
+	--fb-color-forest-5: #e9fffc;
+	--fb-color-fire: #e95429;
+	--fb-color-fire-80: #90231c;
+	--fb-color-fire-60: #da3a1c;
+	--fb-color-fire-40: #ed754a;
+	--fb-color-fire-20: #f8cab0;
+	--fb-color-water: #00667d;
+	--fb-color-water-60: #0099b5;
+	--fb-color-air: #f5e9e0;
+	--fb-color-earth: #a5714e;
+	--fb-color-earth-40: #c5a17f;
+	--fb-color-tree: #677d48;
+	--fb-color-tree-40: #94a972;
+	--fb-color-white: #fff;
+	--fb-color-black: #000;
+
+	/* ── Colors: Grey scale ───────────────────────────────────────────── */
+	--fb-color-grey-5: #efefef;
+	--fb-color-grey-10: #e3e3e3;
+	--fb-color-grey-20: #b6b6b6;
+	--fb-color-grey-40: #949494;
+	--fb-color-grey-60: #696969;
+	--fb-color-grey-80: #383838;
+	--fb-color-grey-90: #222222;
+
+	/* ── Colors: Semantic (light mode) ────────────────────────────────── */
+	--fb-color-text-primary: var(--fb-color-forest);
+	--fb-color-text-secondary: var(--fb-color-water);
+	--fb-color-text-tertiary: var(--fb-color-grey-40);
+	--fb-color-bg-primary: var(--fb-color-white);
+	--fb-color-bg-secondary: var(--fb-color-air);
+	--fb-color-divider: var(--fb-color-fire);
+	--fb-color-error: #f00a0a;
+
+	/* ── Font families ────────────────────────────────────────────────── */
+	--fb-font-display: aglet-sans, sans-serif;
+	--fb-font-heading: source-serif-pro, serif;
+	--fb-font-body: source-sans-pro, sans-serif;
+
+	/* ── Typography: mobile-first sizes ───────────────────────────────── */
+	--fb-text-display-xxl: 64px;
+	--fb-leading-display-xxl: 80px;
+	--fb-text-display-xl: 56px;
+	--fb-leading-display-xl: 72px;
+	--fb-text-display-lg: 40px;
+	--fb-leading-display-lg: 56px;
+	--fb-text-display-md: 32px;
+	--fb-leading-display-md: 40px;
+	--fb-text-display-sm: 24px;
+	--fb-leading-display-sm: 32px;
+	--fb-text-display-xs: 20px;
+	--fb-leading-display-xs: 28px;
+	--fb-text-body-lg: 18px;
+	--fb-leading-body-lg: 28px;
+	--fb-text-body-md: 16px;
+	--fb-leading-body-md: 24px;
+	--fb-text-body-sm: 12px;
+	--fb-leading-body-sm: 18px;
+	--fb-text-body-xs: 8px;
+	--fb-leading-body-xs: 14px;
+	--fb-text-eyebrow-lg: 20px;
+	--fb-text-eyebrow-md: 16px;
+	--fb-text-eyebrow-sm: 12px;
+	--fb-text-button-md: 18px;
+	--fb-text-button-sm: 16px;
+
+	/* ── Border radii ─────────────────────────────────────────────────── */
+	--fb-radius-sm: 8px;
+	--fb-radius-md: 16px;
+	--fb-radius-lg: 32px;
+	--fb-radius-xl: 80px;
+	--fb-radius-xxl: 128px;
+	--fb-radius-curve: 64px;
+
+	/* ── Shadows ──────────────────────────────────────────────────────── */
+	--fb-shadow-sm: 0px 4px 16px 0px rgba(0, 0, 0, 0.16);
+	--fb-shadow-card: 0px 2px 40px 0px rgba(0, 0, 0, 0.24);
+	--fb-shadow-card-elevated: 0px 2px 40px 24px rgba(0, 0, 0, 0.24);
+
+	/* ── Base text color ──────────────────────────────────────────────── */
+	color: var(--fb-color-text-primary);
+}
+
+/* ── Typography: desktop overrides at lg (1024px) ─────────────────────── */
+@media (min-width: 1024px) {
+	.fb {
+		--fb-text-display-xxl: 124px;
+		--fb-leading-display-xxl: 116px;
+		--fb-text-display-xl: 80px;
+		--fb-leading-display-xl: 90px;
+		--fb-text-display-lg: 56px;
+		--fb-leading-display-lg: 64px;
+		--fb-text-display-md: 40px;
+		--fb-leading-display-md: 56px;
+		--fb-text-display-sm: 32px;
+		--fb-leading-display-sm: 40px;
+		--fb-text-display-xs: 24px;
+		--fb-leading-display-xs: 32px;
+		--fb-text-body-lg: 18px;
+		--fb-leading-body-lg: 30px;
+		--fb-text-body-md: 16px;
+		--fb-leading-body-md: 26px;
+		--fb-text-body-sm: 12px;
+		--fb-leading-body-sm: 20px;
+		--fb-text-body-xs: 8px;
+		--fb-leading-body-xs: 16px;
+	}
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Scoped Reset — neutralise theme-inherited spacing within .fb blocks.
+   The WordPress theme (Understrap/Bootstrap) sets default margins on
+   elements like p, h1-h6, ul, ol, etc.  Since Tailwind preflight is off
+   we apply our own minimal reset scoped to the .fb wrapper.
+   ========================================================================== */
+
+.fb h1,
+.fb h2,
+.fb h3,
+.fb h4,
+.fb h5,
+.fb h6,
+.fb p,
+.fb ol,
+.fb ul,
+.fb dl,
+.fb dd,
+.fb blockquote,
+.fb figure,
+.fb pre,
+.fb address,
+.fb hr {
+	margin: 0;
+	padding: 0;
+}
+
+.fb h1,
+.fb h2,
+.fb h3,
+.fb h4,
+.fb h5,
+.fb h6 {
+	text-transform: none;
+}
+
+.fb h4 {
+	font-family: var(--fb-font-heading);
+	font-size: var(--fb-text-display-md);
+	font-weight: 600;
+	line-height: var(--fb-leading-display-md);
+	color: var(--fb-color-text-primary);
+}
+
+.fb h5 {
+	font-family: var(--fb-font-body);
+	font-size: var(--fb-text-display-sm);
+	font-weight: 400;
+	line-height: var(--fb-leading-display-sm);
+	color: var(--fb-color-text-primary);
+}
+
+.fb h6 {
+	font-family: var(--fb-font-body);
+}
+
+.fb p {
+	font-family: var(--fb-font-body);
+	font-size: var(--fb-text-body-lg);
+	font-weight: 400;
+	line-height: var(--fb-leading-body-lg);
+	color: inherit;
+}
+
+/* ==========================================================================
+   WYSIWYG — spacing for rich-text / wp_kses_post output.
+   ========================================================================== */
+
+.fb .wysiwyg p {
+	margin-bottom: 16px;
+}
+
+.fb .wysiwyg p:last-child {
+	margin-bottom: 0;
+}
+
+.fb .wysiwyg ul,
+.fb .wysiwyg ol {
+	margin-bottom: 16px;
+	padding-left: 1.5em;
+}
+
+.fb .wysiwyg ul:last-child,
+.fb .wysiwyg ol:last-child {
+	margin-bottom: 0;
+}
+
+.fb .wysiwyg ul {
+	list-style: disc;
+}
+
+.fb .wysiwyg ol {
+	list-style: decimal;
+}
+
+.fb .wysiwyg li {
+	margin-bottom: 4px;
+}
+
+.fb .wysiwyg h1,
+.fb .wysiwyg h2,
+.fb .wysiwyg h3,
+.fb .wysiwyg h4,
+.fb .wysiwyg h5,
+.fb .wysiwyg h6 {
+	margin-bottom: 8px;
+}
+
+.fb ol,
+.fb ul {
+	list-style: none;
+}
+
+.fb img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* ==========================================================================
+   Hero Header — card highlight cycling (desktop only)
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+	.fb .hero-header__card {
+		outline-color: transparent !important;
+		transition: outline-color 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.fb .hero-header__card--active {
+		outline-color: #fff !important;
+		transform: scale(1.01);
+	}
+
+	.fb .hero-header__card-glass {
+		background-color: rgba(0, 59, 69, 0.15);
+		transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.fb .hero-header__card--active .hero-header__card-glass {
+		background-color: rgba(0, 59, 69, 0.40);
+	}
+}
+
+
+/* ==========================================================================
+   Testimonial Stack — sticky stacking cards
+   ========================================================================== */
+
+.fb .testimonial-stack > div > div {
+	/* Each card is sticky and stacks on scroll with incrementing z-index */
+	transition: box-shadow 0.3s ease;
+}
+
+.fb .testimonial-stack > div > div:hover {
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Metrics & Gallery — Swiperjs gallery with nav buttons
+   ========================================================================== */
+
+.fb .metrics-gallery__prev-btn,
+.fb .metrics-gallery__next-btn {
+	transition: opacity 0.3s ease;
+	cursor: pointer;
+}
+
+.fb .metrics-gallery__prev-btn:disabled,
+.fb .metrics-gallery__next-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.fb .swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ==========================================================================
+   Step Section — sticky scroll image/card transitions
+   ========================================================================== */
+
+.fb .step-section__image {
+	transition: opacity 0.5s ease;
+}
+
+.fb .step-section__card-text {
+	transition: opacity 0.4s ease;
+}
+
+.fb .step-section__trees {
+	transition: transform 0.1s linear;
+}
+
+/* ==========================================================================
+   Gravity Forms — global overrides (scoped to .fb)
+   Applies to any Gravity Form rendered inside a Forest Block.
+   ========================================================================== */
+
+/* Reset GF wrapper spacing */
+.fb .gform_wrapper {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.fb .gform_wrapper .gform_fields {
+	gap: 24px !important;
+}
+
+/* Labels — theme uses !important on font-size/weight, so we must too */
+.fb .gform_wrapper label.gfield_label,
+.fb .gform_wrapper legend.gfield_label,
+.fb .gform_wrapper .gform-field-label {
+	font-family: var(--fb-font-body) !important;
+	font-size: var(--fb-text-body-sm) !important;
+	line-height: var(--fb-leading-body-sm) !important;
+	color: var(--fb-color-water) !important;
+	font-weight: 400 !important;
+	margin-bottom: 4px !important;
+}
+
+/* Text inputs, email, tel, number, select — theme uses !important on padding */
+.fb .gform_wrapper input[type="text"],
+.fb .gform_wrapper input[type="email"],
+.fb .gform_wrapper input[type="tel"],
+.fb .gform_wrapper input[type="number"],
+.fb .gform_wrapper input[type="url"],
+.fb .gform_wrapper select,
+.fb .gform_wrapper .gfield_select {
+	border: 1px solid var(--fb-color-grey-20) !important;
+	border-radius: var(--fb-radius-xl) !important;
+	padding: 12px 16px !important;
+	font-family: var(--fb-font-body) !important;
+	font-size: var(--fb-text-body-md) !important;
+	line-height: var(--fb-leading-body-md) !important;
+	color: var(--fb-color-forest) !important;
+	background: white !important;
+	width: 100% !important;
+	height: auto !important;
+	box-shadow: none !important;
+	outline: none !important;
+	transition: border-color 0.2s ease !important;
+}
+
+.fb .gform_wrapper input:focus,
+.fb .gform_wrapper select:focus,
+.fb .gform_wrapper textarea:focus {
+	border-color: var(--fb-color-forest-80) !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+/* Textarea — theme uses !important on padding and border-radius */
+.fb .gform_wrapper textarea {
+	border: 1px solid var(--fb-color-grey-20) !important;
+	border-radius: var(--fb-radius-md) !important;
+	padding: 12px 16px !important;
+	font-family: var(--fb-font-body) !important;
+	font-size: var(--fb-text-body-md) !important;
+	line-height: var(--fb-leading-body-md) !important;
+	color: var(--fb-color-forest) !important;
+	background: white !important;
+	width: 100% !important;
+	min-height: 100px;
+	box-shadow: none !important;
+	outline: none !important;
+	resize: vertical;
+	transition: border-color 0.2s ease !important;
+}
+
+/* Placeholders */
+.fb .gform_wrapper input::placeholder,
+.fb .gform_wrapper textarea::placeholder {
+	color: var(--fb-color-grey-40) !important;
+}
+
+/* Date field — styled as fire link with calendar icon */
+.fb .gform_wrapper .gfield--type-date .ginput_container_date {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.fb .gform_wrapper .gfield--type-date input[type="text"] {
+	border: none !important;
+	padding: 12px 0 !important;
+	font-family: var(--fb-font-display) !important;
+	font-size: var(--fb-text-button-md) !important;
+	font-weight: 600 !important;
+	color: var(--fb-color-fire) !important;
+	cursor: pointer;
+	width: auto !important;
+	background: transparent !important;
+	border-radius: 0 !important;
+}
+
+.fb .gform_wrapper .gfield--type-date input[type="text"]::placeholder {
+	color: var(--fb-color-fire) !important;
+}
+
+/* Submit button — override theme .btn .btn-primary extends */
+.fb .gform_wrapper .gform_footer,
+.fb .gform_wrapper .gform_page_footer {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.fb .gform_wrapper input[type="submit"],
+.fb .gform_wrapper button[type="submit"],
+.fb .gform_wrapper .gform_button {
+	background-color: var(--fb-color-fire) !important;
+	color: white !important;
+	border: 1px solid transparent !important;
+	border-radius: var(--fb-radius-xl) !important;
+	padding: 12px 16px !important;
+	min-width: 156px;
+	height: 48px !important;
+	font-family: var(--fb-font-display) !important;
+	font-size: var(--fb-text-button-md) !important;
+	font-weight: 600 !important;
+	cursor: pointer;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+	line-height: 1 !important;
+	box-shadow: none !important;
+}
+
+.fb .gform_wrapper input[type="submit"]:hover,
+.fb .gform_wrapper button[type="submit"]:hover,
+.fb .gform_wrapper .gform_button:hover {
+	border-color: var(--fb-color-fire-80) !important;
+	box-shadow: 0 0 0 4px rgba(233, 84, 41, 0.15) !important;
+	background-color: var(--fb-color-fire) !important;
+	color: white !important;
+}
+
+/* Validation error styling */
+.fb .gform_wrapper .gfield_error input,
+.fb .gform_wrapper .gfield_error textarea {
+	border-color: var(--fb-color-error) !important;
+}
+
+.fb .gform_wrapper .gfield_error .gfield_label {
+	color: var(--fb-color-error) !important;
+}
+
+.fb .gform_wrapper .validation_message {
+	font-family: var(--fb-font-body) !important;
+	font-size: var(--fb-text-body-sm) !important;
+	color: var(--fb-color-error) !important;
+}
+
+/* Hide GF default styling artifacts */
+.fb .gform_wrapper .gform_validation_errors {
+	border-radius: var(--fb-radius-md);
+}
+
+/* ==========================================================================
+   Block stacking — z-index for overlapping sections
+   ========================================================================== */
+
+.fb.benefits-showcase {
+	z-index: 10;
+	position: relative;
+	display: block;
+}
+
+.fb.video-block {
+	z-index: 2;
+	position: relative;
+	display: block;
+}
+
+.video-block__geo {
+	overflow-y: visible;
+	overflow-x: clip;
+}
+
+/* Geo-wave parallax layers */
+.fb .cta-form__geo img,
+.fb .video-block__geo [data-parallax-speed] {
+	transition: transform 0.1s linear;
+	will-change: transform;
+}
+
+.fb .video-block__geo svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}

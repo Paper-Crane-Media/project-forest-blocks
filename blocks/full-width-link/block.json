@@ -1,0 +1,17 @@
+{
+	"name": "acf/full-width-link",
+	"title": "Full-width Link",
+	"description": "A full-width fire-coloured bar with a text link and chevron arrow.",
+	"category": "forest-blocks",
+	"icon": "admin-links",
+	"keywords": [ "link", "cta", "banner" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/full-width-link/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

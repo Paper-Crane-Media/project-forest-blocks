@@ -1,0 +1,17 @@
+{
+	"name": "acf/features-block",
+	"title": "Features Block",
+	"description": "Dark-background section with header, CTA, and a two-column grid of feature cards with circular images.",
+	"category": "forest-blocks",
+	"icon": "grid-view",
+	"keywords": [ "features", "grid", "cards", "circular", "sponsorship" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/features-block/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}
