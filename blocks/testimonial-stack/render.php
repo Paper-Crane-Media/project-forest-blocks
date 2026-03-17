@@ -39,6 +39,8 @@ $cards = $b->field( 'cards', [] );
 				$author_source  = $card['author_source'] ?? '';
 				$color          = $card['color'] ?? 'forest';
 
+
+				// Tailwind safelist: text-forest text-water text-earth text-tree
 				// Map color to CSS class and pattern
 				$color_classes = [
 					'forest' => 'bg-forest border-air',
@@ -88,9 +90,9 @@ $cards = $b->field( 'cards', [] );
 
 									<!-- Body -->
 									<?php if ( $body ) : ?>
-										<p>
-											<?php echo esc_html( $body ); ?>
-										</p>
+										<div class="wysiwyg">
+											<?php echo wp_kses_post( $body ); ?>
+										</div>
 									<?php endif; ?>
 
 								</div>
@@ -121,7 +123,7 @@ $cards = $b->field( 'cards', [] );
 										<div aria-hidden="true" class="absolute inset-0 rounded-full pointer-events-none">
 											<div class="absolute inset-0 rounded-full <?php echo esc_attr( $color_classes[ $color ] ); ?>"></div>
 											<div
-												class="absolute inset-0 rounded-full mix-blend-overlay opacity-16"
+												class="absolute inset-0 rounded-full opacity-[0.16]"
 												style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: 86px 90px;"
 												aria-hidden="true"
 											></div>
@@ -153,7 +155,7 @@ $cards = $b->field( 'cards', [] );
 											</div>
 
 											<!-- Decorative Leaf Icon -->
-											<div data-tree-grow="leaf"><?php echo fb_leaf_icon( 'text-air' ); ?></div>
+											<div data-tree-grow="leaf" class="lg:translate-y-[25px]"><?php echo fb_leaf_icon( 'text-air' ); ?></div>
 
 										</div>
 
@@ -165,11 +167,11 @@ $cards = $b->field( 'cards', [] );
 						</div>
 
 						<!-- Bottom Decorative Trees (desktop only) -->
-						<div class="hidden lg:flex items-end justify-center gap-2 absolute bottom-0 left-1/2 -translate-x-1/2 text-forest" aria-hidden="true" data-tree-grow-group>
-							<div class="h-[54px]" data-tree-grow="simple">
+						<div class="hidden lg:flex items-end justify-center gap-2 absolute bottom-0 left-1/2 -translate-x-1/2 text-<?php echo esc_attr( $color ); ?>" aria-hidden="true" data-tree-grow-group>
+							<div class="h-[56px] lg:h-[124px]" data-tree-grow="simple">
 								<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-simple.svg'; ?>
 							</div>
-							<div class="h-[56px]" data-tree-grow="triangle" data-tree-delay="0.5">
+							<div class="h-[54px] lg:h-[126px]" data-tree-grow="triangle" data-tree-delay="0.5">
 								<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-triangle.svg'; ?>
 							</div>
 						</div>

@@ -65,10 +65,6 @@ function initMetricsGallerySlider() {
  * step card as each card crosses the viewport midpoint on desktop.
  */
 function initStepSectionScroll() {
-	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-	gsap.registerPlugin(ScrollTrigger);
-
 	document.querySelectorAll('.step-section').forEach((section) => {
 		const cards = section.querySelectorAll('.step-section__card');
 		const images = section.querySelectorAll('.step-section__image');
@@ -293,10 +289,6 @@ function computeStaggerDelay(element) {
 }
 
 function initStaggerAnimations() {
-	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-	gsap.registerPlugin(ScrollTrigger);
-
 	document.querySelectorAll('[data-stagger="true"]').forEach((container) => {
 		const delay = computeStaggerDelay(container);
 		const children = container.children;
@@ -329,10 +321,6 @@ function initStaggerAnimations() {
  * from 0 to the target value when the metrics section scrolls into view.
  */
 function initMetricsCountUp() {
-	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-	gsap.registerPlugin(ScrollTrigger);
-
 	document.querySelectorAll('.metrics-gallery__number').forEach((el) => {
 		const endValue = parseInt(el.dataset.countTo, 10) || 0;
 		const prefix = el.dataset.countPrefix || '';
@@ -370,10 +358,6 @@ function initMetricsCountUp() {
  * Each wrapper uses data-tree-grow="<type>" and optional data-tree-delay="<seconds>".
  */
 function initTreeGrowth() {
-	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-	gsap.registerPlugin(ScrollTrigger);
-
 	// Helper: hide a path by setting dashoffset to its full length.
 	// Use negative offset to reverse the draw direction (draw from end → start).
 	const hidePath = (p, reverse) => {
@@ -459,28 +443,48 @@ function initTreeGrowth() {
 	});
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Initialization — runs non-GSAP code on DOMContentLoaded and GSAP code on load,
+ * with fallbacks if those events have already fired.
+ */
+function initDOM() {
 	initHeroCardCycle();
 	initFancybox();
 	initMetricsGallerySlider();
 	initCtaFormParallax();
 	initVideoBlockParallax();
-});
+}
 
-window.addEventListener('load', () => {
+function initGSAP() {
+	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+	gsap.registerPlugin(ScrollTrigger);
+
 	initStaggerAnimations();
 	initStepSectionScroll();
 	initMetricsCountUp();
 	initTreeGrowth();
 
 	// Keep ScrollTrigger positions accurate after layout shifts.
-	if (typeof ScrollTrigger !== 'undefined') {
-		let resizeTimer;
-		const refresh = () => {
-			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
-		};
-		window.addEventListener('resize', refresh);
-		window.addEventListener('orientationchange', refresh);
-	}
-});
+	let resizeTimer;
+	const refresh = () => {
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
+	};
+	window.addEventListener('resize', refresh);
+	window.addEventListener('orientationchange', refresh);
+}
+
+// DOM-dependent inits (no GSAP needed).
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', initDOM);
+} else {
+	initDOM();
+}
+
+// GSAP-dependent inits (need images/fonts settled for accurate trigger positions).
+if (document.readyState === 'complete') {
+	initGSAP();
+} else {
+	window.addEventListener('load', initGSAP);
+}

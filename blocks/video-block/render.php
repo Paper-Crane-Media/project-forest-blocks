@@ -92,11 +92,11 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 			<a
 				href="<?php echo esc_url( $youtube_url ); ?>"
 				data-fancybox
-				class="group relative block aspect-[25/18] lg:aspect-video w-full cursor-pointer overflow-hidden rounded-t-container-md"
+				class="group relative block aspect-[5/2] w-full cursor-pointer overflow-hidden rounded-t-container-md"
 				aria-label="<?php esc_attr_e( 'Play video', 'forest-blocks' ); ?>"
 			>
 		<?php else : ?>
-			<div class="group relative aspect-[25/18] lg:aspect-video w-full overflow-hidden rounded-t-container-md">
+			<div class="group relative aspect-[5/2] w-full overflow-hidden rounded-t-container-md">
 		<?php endif; ?>
 
 			<?php if ( $video_url ) : ?>

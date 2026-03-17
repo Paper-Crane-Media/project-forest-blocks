@@ -79,7 +79,7 @@ $features        = $b->field( 'features', [] );
 		<!-- Feature cards grid -->
 		<?php if ( ! empty( $features ) ) : ?>
 			<div class="mt-10 lg:px-4">
-				<div class="flex flex-wrap gap-10 lg:gap-x-8 lg:gap-y-16" data-stagger="true">
+				<div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:gap-x-8 lg:gap-y-16" data-stagger="true">
 
 					<?php foreach ( $features as $feature ) : ?>
 						<?php
@@ -89,7 +89,7 @@ $features        = $b->field( 'features', [] );
 						$feat_link        = is_array( $feature['link'] ?? null ) ? $feature['link'] : [];
 						?>
 
-						<div class="flex w-full flex-col items-start gap-6 lg:w-[556px] lg:flex-row" data-stagger="true">
+						<div class="flex flex-col items-start gap-6 sm:flex-row" data-stagger="true">
 							<!-- Circular image -->
 							<?php if ( ! empty( $feat_image['url'] ) ) : ?>
 								<div class="h-[100px] w-[100px] shrink-0 overflow-hidden rounded-full lg:h-[148px] lg:w-[148px]">

@@ -170,7 +170,7 @@ $images      = $b->field( 'images', [] );
 							</div>
 
 							<!-- Gallery Controls -->
-							<div class="relative flex items-center justify-between p-4 rounded-[128px] overflow-hidden">
+							<div class="relative flex items-center justify-between overflow-hidden">
 								<div class="absolute inset-0 backdrop-blur-[12px] bg-forest/10 mix-blend-lighten pointer-events-none rounded-[128px]" aria-hidden="true"></div>
 
 								<!-- Label -->
