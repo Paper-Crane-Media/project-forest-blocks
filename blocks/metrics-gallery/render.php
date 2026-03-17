@@ -28,10 +28,10 @@ $images      = $b->field( 'images', [] );
 		<?php if ( $eyebrow || $heading || $subheading ) : ?>
 
 			<!-- Header Section -->
-			<div class="mx-auto w-[94%] max-w-container pb-10 lg:pb-16">
+			<div class="mx-auto w-[94%] max-w-container pb-10">
 
 				<!-- Header Groups -->
-				<div class="flex flex-col gap-4 pb-10 lg:pb-16">
+				<div class="flex flex-col gap-4">
 
 					<?php if ( $eyebrow ) : ?>
 						<div class="inline-flex">
