@@ -37,15 +37,23 @@ $silhouette_url = FOREST_BLOCKS_URL . 'assets/images/forest-silhouette.svg';
 		<?php endif; ?>
 	</div>
 
-	<!-- ── Forest silhouette (decorative) ───────────────────────────── -->
-	<div class="pointer-events-none relative z-0 -mt-10 lg:-mt-20 min-h-[120px] lg:min-h-[280px]" aria-hidden="true">
-		<img
-			src="<?php echo esc_url( $silhouette_url ); ?>"
-			alt=""
-			loading="eager"
-			fetchpriority="high"
-			class="block w-[120%] max-w-[120%] -translate-x-[10%] translate-y-12 object-contain"
-		/>
+	<!-- ── Forest silhouette — mirrored pair, flush at bottom ──────── -->
+	<div class="pointer-events-none relative z-0 -mt-10 -mb-4 min-h-[120px] lg:-mt-20 lg:-mb-8 lg:min-h-[280px]" aria-hidden="true">
+		<div class="absolute inset-x-0 bottom-0 flex items-end justify-center">
+			<img
+				src="<?php echo esc_url( $silhouette_url ); ?>"
+				alt=""
+				loading="eager"
+				fetchpriority="high"
+				class="block h-auto w-[110vw] max-w-none shrink-0 lg:translate-x-[5%]"
+			/>
+			<img
+				src="<?php echo esc_url( $silhouette_url ); ?>"
+				alt=""
+				loading="eager"
+				class="block h-auto w-[110vw] max-w-none shrink-0 -scale-x-100 lg:-translate-x-[5%]"
+			/>
+		</div>
 	</div>
 
 	<!-- ── Air background section ───────────────────────────────────── -->

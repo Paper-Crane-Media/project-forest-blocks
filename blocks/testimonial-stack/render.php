@@ -61,7 +61,7 @@ $cards = $b->field( 'cards', [] );
 				?>
 
 				<!-- Testimonial Card -->
-				<?php $sticky_pt = 8 + ( $index * 2 ); ?>
+				<?php $sticky_pt = 5 + ( $index * 1 ); ?>
 				<div class="testimonial-stack__card lg:sticky lg:top-0" style="z-index: <?php echo esc_attr( 1 + $index ); ?>; padding-top: <?php echo esc_attr( $sticky_pt ); ?>rem;">
 					<div class="relative bg-white border border-grey-20 lg:border-b lg:border-forest py-6 px-4 rounded-tl-[24px] rounded-tr-[24px] lg:rounded-tl-container-lg lg:rounded-tr-container-lg max-w-[1340px] mx-auto lg:px-10 lg:pb-16 lg:pt-10">
 
