@@ -159,6 +159,30 @@
 	text-transform: none;
 }
 
+.fb h1 {
+	font-family: var(--fb-font-display);
+	font-size: var(--fb-text-display-xxl);
+	font-weight: 600;
+	line-height: var(--fb-leading-display-xxl);
+	color: var(--fb-color-text-primary);
+}
+
+.fb h2 {
+	font-family: var(--fb-font-heading);
+	font-size: var(--fb-text-display-xl);
+	font-weight: 600;
+	line-height: var(--fb-leading-display-xl);
+	color: var(--fb-color-text-primary);
+}
+
+.fb h3 {
+	font-family: var(--fb-font-heading);
+	font-size: var(--fb-text-display-lg);
+	font-weight: 600;
+	line-height: var(--fb-leading-display-lg);
+	color: var(--fb-color-text-primary);
+}
+
 .fb h4 {
 	font-family: var(--fb-font-heading);
 	font-size: var(--fb-text-display-md);
@@ -177,6 +201,10 @@
 
 .fb h6 {
 	font-family: var(--fb-font-body);
+	font-size: var(--fb-text-display-xs);
+	font-weight: 600;
+	line-height: var(--fb-leading-display-xs);
+	color: var(--fb-color-text-primary);
 }
 
 .fb p {
@@ -278,6 +306,13 @@
 
 .fb .testimonial-stack > div > div:hover {
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* On mobile, override the large inline padding-top used for desktop sticky stacking */
+@media (max-width: 1023px) {
+	.fb .testimonial-stack__card {
+		padding-top: 1.5rem !important;
+	}
 }
 
 /* ==========================================================================
