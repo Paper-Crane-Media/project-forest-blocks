@@ -111,15 +111,8 @@ Just use `text-display-xxl` etc. — the size and line-height automatically adju
 | `rounded-curve` | 64px |
 | `shadow-card` | `0px 2px 40px 0px rgba(0,0,0,0.24)` |
 | `shadow-card-elevated` | `0px 2px 40px 24px rgba(0,0,0,0.24)` |
-| `max-w-container` | 1260px |
+| `max-w-container` | 1440px |
 | `max-w-content` | 1024px |
-
-**Container pattern:** All block content sections use `mx-auto w-[94%] max-w-container` — no horizontal padding (`px-*`). The `w-[94%]` provides consistent 3% gutters on each side at all breakpoints, capped at 1260px. Example:
-```html
-<div class="mx-auto w-[94%] max-w-container">
-  <!-- block content -->
-</div>
-```
 
 **Spacing:** Uses Tailwind's default 4px-based scale which matches the Figma spacing collection exactly (e.g. `gap-6` = 24px, `p-10` = 40px, `p-20` = 80px). No custom spacing tokens needed.
 

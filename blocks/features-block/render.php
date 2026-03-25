@@ -42,22 +42,22 @@ $features        = $b->field( 'features', [] );
 					<?php endif; ?>
 
 					<?php if ( $heading ) : ?>
-						<h4 class="text-[#fff]">
+						<h2 class="font-heading text-display-md font-semibold text-[#fff]">
 							<?php echo esc_html( $heading ); ?>
-						</h4>
+						</h2>
 					<?php endif; ?>
 				</div>
 
 				<?php if ( $subheading ) : ?>
-					<h5 class="text-[#fff]">
+					<p class="font-heading text-display-sm text-[#fff]">
 						<?php echo esc_html( $subheading ); ?>
-					</h5>
+					</p>
 				<?php endif; ?>
 
 				<?php if ( $body ) : ?>
-					<div class="wysiwyg text-[#fff]">
-						<?php echo wp_kses_post( $body ); ?>
-					</div>
+					<p class="font-body text-body-lg text-[#fff]">
+						<?php echo esc_html( $body ); ?>
+					</p>
 				<?php endif; ?>
 			</div>
 
@@ -65,7 +65,7 @@ $features        = $b->field( 'features', [] );
 			<?php if ( $cta_description || ! empty( $cta['url'] ) ) : ?>
 				<div class="flex flex-1 flex-col items-start gap-4 lg:pb-10">
 					<?php if ( $cta_description ) : ?>
-						<p class="text-[#fff]">
+						<p class="font-body text-body-lg text-[#fff]">
 							<?php echo esc_html( $cta_description ); ?>
 						</p>
 					<?php endif; ?>
@@ -79,17 +79,17 @@ $features        = $b->field( 'features', [] );
 		<!-- Feature cards grid -->
 		<?php if ( ! empty( $features ) ) : ?>
 			<div class="mt-10 lg:px-4">
-				<div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:gap-x-8 lg:gap-y-16" data-stagger="true">
+				<div class="flex flex-wrap gap-10 lg:gap-x-8 lg:gap-y-16">
 
 					<?php foreach ( $features as $feature ) : ?>
 						<?php
 						$feat_image       = $feature['image'] ?? [];
 						$feat_heading     = $feature['heading'] ?? '';
 						$feat_description = $feature['description'] ?? '';
-						$feat_link        = is_array( $feature['link'] ?? null ) ? $feature['link'] : [];
+						$feat_link        = $feature['link'] ?? [];
 						?>
 
-						<div class="flex flex-col items-start gap-6 sm:flex-row" data-stagger="true">
+						<div class="flex w-full items-start gap-6 lg:w-[556px]">
 							<!-- Circular image -->
 							<?php if ( ! empty( $feat_image['url'] ) ) : ?>
 								<div class="h-[100px] w-[100px] shrink-0 overflow-hidden rounded-full lg:h-[148px] lg:w-[148px]">
@@ -105,19 +105,21 @@ $features        = $b->field( 'features', [] );
 							<div class="flex flex-1 flex-col gap-6">
 								<div class="flex flex-col gap-4 text-[#fff]">
 									<?php if ( $feat_heading ) : ?>
-										<h6 class="text-display-xs">
+										<p class="font-heading text-display-xs">
 											<?php echo esc_html( $feat_heading ); ?>
-										</h6>
+										</p>
 									<?php endif; ?>
 
 									<?php if ( $feat_description ) : ?>
-										<p>
+										<p class="font-body text-body-lg">
 											<?php echo esc_html( $feat_description ); ?>
 										</p>
 									<?php endif; ?>
 								</div>
 
+								<?php if ( is_array( $feat_link ) && ! empty( $feat_link['url'] ) ) : ?>
 								<?php echo fb_inline_link( $feat_link ); ?>
+							<?php endif; ?>
 							</div>
 						</div>
 

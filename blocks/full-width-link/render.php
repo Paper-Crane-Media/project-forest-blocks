@@ -13,8 +13,7 @@ $b    = new FB_Block( $block, $is_preview, $post_id );
 $link = $b->field( 'link' );
 ?>
 <?php $b->open_tag( 'full-width-link' ); ?>
-<div class="bg-fire py-10">
-	<div class="mx-auto w-[94%] max-w-container">
+<div class="bg-fire px-6 py-10 lg:px-20">
 	<?php if ( ! empty( $link['url'] ) ) : ?>
 		<?php echo fb_text_link( $link ); ?>
 	<?php else : ?>
@@ -25,6 +24,5 @@ $link = $b->field( 'link' );
 			</svg>
 		</span>
 	<?php endif; ?>
-	</div>
 </div>
 <?php $b->close_tag(); ?>

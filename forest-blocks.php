@@ -33,12 +33,10 @@ add_filter( 'block_categories_all', function ( $categories ) {
 add_action( 'wp_enqueue_scripts', function () {
 	$css = FOREST_BLOCKS_PATH . 'dist/forest-blocks.css';
 	if ( file_exists( $css ) ) {
-		// Depend on theme stylesheet so our overrides load after it in the cascade.
-		$deps = wp_style_is( 'ProjectForest-styles', 'registered' ) ? [ 'ProjectForest-styles' ] : [];
 		wp_enqueue_style(
 			'forest-blocks',
 			FOREST_BLOCKS_URL . 'dist/forest-blocks.css',
-			$deps,
+			[],
 			FOREST_BLOCKS_VERSION
 		);
 	}

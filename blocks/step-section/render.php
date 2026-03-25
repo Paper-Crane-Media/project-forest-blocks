@@ -23,19 +23,17 @@ $steps   = $b->field( 'steps', [] );
 
 <div>
 	<!-- Tree header: dark forest bg with tree silhouette overlay -->
-	<div class="relative overflow-hidden bg-forest-80" style="height: clamp(180px, 25vw, 352px);">
-		<div class="w-[120%] -translate-x-[10%] h-full">
-			<img
-				src="<?php echo esc_url( FOREST_BLOCKS_URL . 'assets/images/tree-header.svg' ); ?>"
-				alt=""
-				class="step-section__trees pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom"
-				aria-hidden="true"
-			/>
-
-		</div>
+	<div class="relative overflow-hidden bg-forest" style="height: clamp(180px, 25vw, 352px);">
+		<img
+			src="<?php echo esc_url( FOREST_BLOCKS_URL . 'assets/images/tree-header.svg' ); ?>"
+			alt=""
+			class="step-section__trees pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom"
+			aria-hidden="true"
+		/>
 	</div>
+
 	<!-- Main content area -->
-	<div class="bg-air -mt-[3px] z-10 px-6 pb-10 pt-6 lg:px-10 lg:pb-10">
+	<div class="bg-air px-6 pb-10 pt-6 lg:px-10 lg:pb-10">
 		<div class="mx-auto max-w-[1280px]">
 
 			<!-- Two-column layout -->
@@ -53,9 +51,9 @@ $steps   = $b->field( 'steps', [] );
 						<?php endif; ?>
 
 						<?php if ( $heading ) : ?>
-							<h5 class="font-semibold">
+							<h2 class="font-heading text-display-sm font-semibold text-forest">
 								<?php echo esc_html( $heading ); ?>
-							</h5>
+							</h2>
 						<?php endif; ?>
 					</div>
 
@@ -95,43 +93,36 @@ $steps   = $b->field( 'steps', [] );
 
 							<!-- Step card -->
 							<div
-								class="step-section__card flex items-center gap-6 rounded-container-xl bg-[#fff] py-4 pl-4 pr-8 shadow-sm overflow-clip transition-transform duration-300 <?php echo 0 === $i ? 'scale-[1.01]' : ''; ?>"
+								class="step-section__card flex items-center gap-6 rounded-container-xl bg-[#fff] py-4 pl-4 pr-8 shadow-sm"
 								data-step-index="<?php echo esc_attr( $i ); ?>"
 							>
 								<!-- Numbered icon with decorative arc -->
 								<div class="relative flex h-24 w-24 shrink-0 items-center justify-center">
+									<!-- Decorative arc (forest-80 curved line wrapping left side of circle) -->
+									<svg
+										class="absolute"
+										style="left: 2px; top: 50%; width: 44px; height: 88px; transform: translateY(-50%) rotate(-90deg) scaleY(-1);"
+										viewBox="0 0 93.4072 49.4072"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										aria-hidden="true"
+									>
+										<path d="M2.50293 2.5C2.50262 2.56787 2.5 2.63616 2.5 2.7041C2.50021 27.117 22.2912 46.9072 46.7041 46.9072C71.1168 46.907 90.907 27.1168 90.9072 2.7041C90.9072 2.63616 90.9046 2.56787 90.9043 2.5" stroke="#0c606d" stroke-width="5" stroke-linecap="round"/>
+									</svg>
 
 									<!-- Number circle -->
-									<div class="step-section__circle relative z-10 ml-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-forest p-2 transition-opacity duration-300 <?php echo 0 !== $i ? 'opacity-30' : ''; ?>">
-										<!-- Decorative arc (forest-80 curved line wrapping left side of circle) -->
-										<svg
-											class="step-section__arc half-circle absolute w-[150%] h-[130%] -ml-[75%] transition-opacity duration-300 <?php echo 0 !== $i ? 'opacity-30' : ''; ?>"
-											style="transform:rotate(-90deg) scaleY(-1);"
-											viewBox="0 0 93.4072 49.4072"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-											aria-hidden="true"
-										>
-											<path d="M2.50293 2.5C2.50262 2.56787 2.5 2.63616 2.5 2.7041C2.50021 27.117 22.2912 46.9072 46.7041 46.9072C71.1168 46.907 90.907 27.1168 90.9072 2.7041C90.9072 2.63616 90.9046 2.56787 90.9043 2.5" stroke="#0c606d" stroke-width="5" stroke-linecap="round"/>
-										</svg>
-										<span class="step-section__number flex font-display text-display-md font-semibold leading-none text-air transition-transform duration-300 <?php echo 0 === $i ? 'scale-[1.02]' : ''; ?>">
-											<?php foreach ( str_split( $step_num ) as $d ) : ?>
-												<span class="step-section__digit inline-block overflow-hidden" style="height: 1.1em; line-height: 1.1;">
-													<span class="step-section__digit-track flex flex-col">
-														<span class="block" style="height: 1.1em; line-height: 1.1;"><?php echo esc_html( $d ); ?></span>
-														<span class="block" style="height: 1.1em; line-height: 1.1;"><?php echo esc_html( $d ); ?></span>
-													</span>
-												</span>
-											<?php endforeach; ?>
+									<div class="relative z-10 ml-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-forest p-2">
+										<span class="font-display text-display-md font-semibold leading-none text-air">
+											<?php echo esc_html( $step_num ); ?>
 										</span>
 									</div>
 								</div>
 
 								<!-- Step title -->
 								<div class="flex flex-1 items-center">
-									<h6 class="step-section__card-text text-display-xs font-semibold text-forest <?php echo 0 !== $i ? 'opacity-25' : ''; ?>">
+									<p class="step-section__card-text font-heading text-display-xs font-semibold text-forest <?php echo 0 !== $i ? 'opacity-25' : ''; ?>">
 										<?php echo esc_html( $step_title ); ?>
-									</h6>
+									</p>
 								</div>
 							</div>
 

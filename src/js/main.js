@@ -65,90 +65,25 @@ function initMetricsGallerySlider() {
  * step card as each card crosses the viewport midpoint on desktop.
  */
 function initStepSectionScroll() {
+	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+	gsap.registerPlugin(ScrollTrigger);
+
 	document.querySelectorAll('.step-section').forEach((section) => {
 		const cards = section.querySelectorAll('.step-section__card');
 		const images = section.querySelectorAll('.step-section__image');
 
 		if (!cards.length) return;
 
-		// Prepare arc stroke animation: hide all arcs except the first.
-		cards.forEach((card, ci) => {
-			const arcPath = card.querySelector('.step-section__arc path');
-			if (!arcPath) return;
-			const len = arcPath.getTotalLength();
-			arcPath.dataset.arcLen = len;
-			gsap.set(arcPath, {
-				strokeDasharray: len + 2,
-				strokeDashoffset: ci === 0 ? 0 : len + 2,
-			});
-		});
-
 		const setActiveStep = (index) => {
 			cards.forEach((card) => {
 				const text = card.querySelector('.step-section__card-text');
-				const circle = card.querySelector('.step-section__circle');
-				const arc = card.querySelector('.step-section__arc');
-				const arcPath = arc ? arc.querySelector('path') : null;
-				const number = card.querySelector('.step-section__number');
 				if (!text) return;
 
-				const activeIdx = parseInt(index, 10);
-				const cardIdx = parseInt(card.dataset.stepIndex, 10);
-				const isActive = cardIdx === activeIdx;
-				const isPrior = cardIdx < activeIdx;
-
-				if (isActive) {
+				if (card.dataset.stepIndex === index) {
 					text.classList.remove('opacity-25');
-					card.classList.add('scale-[1.01]');
-					if (circle) circle.classList.remove('opacity-30');
-					if (arc) arc.classList.remove('opacity-30');
-					if (number) number.classList.add('scale-[1.02]');
-
-					// Animate arc stroke drawing on.
-					if (arcPath) {
-						gsap.to(arcPath, {
-							strokeDashoffset: 0,
-							duration: 0.6,
-							ease: 'power2.out',
-						});
-					}
-
-					// Split-flap digit animation: slide each digit track up then reset.
-					const tracks = card.querySelectorAll('.step-section__digit-track');
-					tracks.forEach((track, ti) => {
-						gsap.fromTo(
-							track,
-							{ y: 0 },
-							{
-								y: '-50%',
-								duration: 0.35,
-								delay: ti * 0.06,
-								ease: 'power3.in',
-								onComplete() {
-									gsap.set(track, { y: 0 });
-								},
-							}
-						);
-					});
-				} else if (isPrior) {
-					// Prior cards: full color, arc stays drawn.
-					text.classList.remove('opacity-25');
-					card.classList.remove('scale-[1.01]');
-					if (circle) circle.classList.remove('opacity-30');
-					if (arc) arc.classList.remove('opacity-30');
-					if (arcPath) gsap.set(arcPath, { strokeDashoffset: 0 });
-					if (number) number.classList.remove('scale-[1.02]');
-				} else {
-					// Below active: faded out, arc hidden.
-					if (!text.classList.contains('opacity-25')) text.classList.add('opacity-25');
-					card.classList.remove('scale-[1.01]');
-					if (circle && !circle.classList.contains('opacity-30')) circle.classList.add('opacity-30');
-					if (arc && !arc.classList.contains('opacity-30')) arc.classList.add('opacity-30');
-					if (arcPath) {
-						const len = parseFloat(arcPath.dataset.arcLen) || 0;
-						gsap.set(arcPath, { strokeDashoffset: len + 2 });
-					}
-					if (number) number.classList.remove('scale-[1.02]');
+				} else if (!text.classList.contains('opacity-25')) {
+					text.classList.add('opacity-25');
 				}
 			});
 
@@ -188,8 +123,7 @@ function initStepSectionScroll() {
 				requestAnimationFrame(() => {
 					const rect = section.getBoundingClientRect();
 					if (rect.top < window.innerHeight && rect.bottom > 0) {
-						const offset = Math.max(3, Math.round(-rect.top * 0.15) + 3);
-						trees.style.transform = `translateY(${offset}px)`;
+						trees.style.transform = `translateY(${Math.round(-rect.top * 0.15)}px)`;
 					}
 					ticking = false;
 				});
@@ -219,42 +153,7 @@ function initCtaFormParallax() {
 			requestAnimationFrame(() => {
 				const rect = section.getBoundingClientRect();
 				if (rect.top < window.innerHeight && rect.bottom > 0) {
-					const offset = Math.max(0, -rect.top);
-					layers.forEach((layer) => {
-						const speed = parseFloat(layer.dataset.parallaxSpeed) || 0;
-						layer.style.transform = `translateY(${Math.round(offset * speed)}px)`;
-					});
-				}
-				ticking = false;
-			});
-		};
-
-		window.addEventListener('scroll', onScroll, { passive: true });
-	});
-}
-
-/**
- * Video Block — parallax scroll on geo-wave banner layers.
- * Each wave layer scrolls at a different speed based on data-parallax-speed.
- * Closer layers (higher z-index) have higher speeds for depth effect.
- */
-function initVideoBlockParallax() {
-	document.querySelectorAll('.video-block').forEach((block) => {
-		const geo = block.querySelector('.video-block__geo');
-		if (!geo) return;
-
-		const layers = geo.querySelectorAll('[data-parallax-speed]');
-		if (!layers.length) return;
-
-		let ticking = false;
-
-		const onScroll = () => {
-			if (ticking) return;
-			ticking = true;
-			requestAnimationFrame(() => {
-				const rect = block.getBoundingClientRect();
-				if (rect.top < window.innerHeight && rect.bottom > 0) {
-					const offset = Math.max(0, -rect.top);
+					const offset = -rect.top;
 					layers.forEach((layer) => {
 						const speed = parseFloat(layer.dataset.parallaxSpeed) || 0;
 						layer.style.transform = `translateY(${Math.round(offset * speed)}px)`;
@@ -289,18 +188,20 @@ function computeStaggerDelay(element) {
 }
 
 function initStaggerAnimations() {
+	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+	gsap.registerPlugin(ScrollTrigger);
+
 	document.querySelectorAll('[data-stagger="true"]').forEach((container) => {
 		const delay = computeStaggerDelay(container);
 		const children = container.children;
-		const isEarly = container.hasAttribute('data-stagger-early');
-
 		const tl = gsap.timeline({
 			delay,
 			scrollTrigger: {
 				trigger: container,
-				start: isEarly ? 'top bottom' : 'top bottom-=100',
-				toggleActions: 'play none none none',
-				once: true,
+				start: 'top bottom-=100',
+				end: 'bottom top+=100',
+				toggleActions: 'play none none reverse',
 			},
 		});
 
@@ -315,176 +216,14 @@ function initStaggerAnimations() {
 	});
 }
 
-/**
- * Metrics & Gallery — GSAP ScrollTrigger countup animation.
- * Parses data attributes on each .metrics-gallery__number element and animates
- * from 0 to the target value when the metrics section scrolls into view.
- */
-function initMetricsCountUp() {
-	document.querySelectorAll('.metrics-gallery__number').forEach((el) => {
-		const endValue = parseInt(el.dataset.countTo, 10) || 0;
-		const prefix = el.dataset.countPrefix || '';
-		const suffix = el.dataset.countSuffix || '';
-		const useCommas = el.dataset.countCommas === 'true';
-
-		const formatNumber = (n) => {
-			const rounded = Math.round(n);
-			if (!useCommas) return rounded.toString();
-			return rounded.toLocaleString('en-US');
-		};
-
-		const obj = { val: 0 };
-
-		gsap.to(obj, {
-			val: endValue,
-			duration: 2,
-			ease: 'power2.out',
-			scrollTrigger: {
-				trigger: el,
-				start: 'top bottom-=100',
-				toggleActions: 'play none none none',
-				once: true,
-			},
-			onUpdate() {
-				el.textContent = prefix + formatNumber(obj.val) + suffix;
-			},
-		});
-	});
-}
-
-/**
- * Tree Growth Animation — draws SVG tree paths on scroll using stroke-dashoffset.
- * Supports four tree types: simple, pine, round, triangle.
- * Each wrapper uses data-tree-grow="<type>" and optional data-tree-delay="<seconds>".
- */
-function initTreeGrowth() {
-	// Helper: hide a path by setting dashoffset to its full length.
-	// Use negative offset to reverse the draw direction (draw from end → start).
-	const hidePath = (p, reverse) => {
-		const len = p.getTotalLength();
-		const off = reverse ? -(len + 2) : len + 2;
-		gsap.set(p, { strokeDasharray: len + 2, strokeDashoffset: off });
-	};
-
-	// Helper: tween a path's stroke to fully visible.
-	const draw = (tl, p, dur, ease, pos) => {
-		tl.to(p, { strokeDashoffset: 0, duration: dur, ease }, pos);
-	};
-
-	document.querySelectorAll('[data-tree-grow]').forEach((wrapper) => {
-		const svg = wrapper.querySelector('svg');
-		if (!svg) return;
-
-		const paths = svg.querySelectorAll('path');
-		const type = wrapper.dataset.treeGrow;
-		const delay = parseFloat(wrapper.dataset.treeDelay) || 0;
-
-		// Hide all paths up front (pine trunk is reversed — draws bottom → top).
-		if (type === 'pine' && paths.length >= 9) {
-			hidePath(paths[0], true);
-			for (let i = 1; i < paths.length; i++) hidePath(paths[i]);
-		} else {
-			paths.forEach((p) => hidePath(p));
-		}
-
-		const trigger = wrapper.closest('[data-tree-grow-group]') || wrapper;
-
-		const tl = gsap.timeline({
-			delay,
-			scrollTrigger: {
-				trigger,
-				start: 'top 97%',
-				toggleActions: 'play none none none',
-				once: true,
-			},
-		});
-
-		if (type === 'simple' && paths.length >= 5) {
-			// Paths: 0=trunk, 1=branch-low-L, 2=branch-high-L, 3=branch-R, 4=canopy
-			draw(tl, paths[0], 0.7, 'power2.out');
-			draw(tl, paths[1], 0.35, 'power2.out', '-=0.15');
-			draw(tl, paths[3], 0.35, 'power2.out', '-=0.2');
-			draw(tl, paths[2], 0.35, 'power2.out', '-=0.2');
-			draw(tl, paths[4], 0.9, 'power3.out', '-=0.1');
-
-		} else if (type === 'pine' && paths.length >= 9) {
-			// Paths: 0=trunk(top→bottom, reversed), 1-2=top pair(y16),
-			//        3-4=mid-low(y78), 5-6=mid-high(y47), 7-8=bottom(y109)
-			// Trunk draws bottom → top, then branch pairs bottom → top.
-			draw(tl, paths[0], 0.8, 'power2.out');
-			draw(tl, [paths[7], paths[8]], 0.35, 'power2.out', '-=0.2');
-			draw(tl, [paths[3], paths[4]], 0.35, 'power2.out', '-=0.2');
-			draw(tl, [paths[5], paths[6]], 0.35, 'power2.out', '-=0.2');
-			draw(tl, [paths[1], paths[2]], 0.35, 'power2.out', '-=0.2');
-
-		} else if (type === 'round' && paths.length >= 6) {
-			// Paths: 0=canopy(circle), 1=trunk, 2-3=lower branches, 4-5=upper branches
-			draw(tl, paths[1], 0.7, 'power2.out');
-			draw(tl, [paths[2], paths[3]], 0.35, 'power2.out', '-=0.15');
-			draw(tl, [paths[4], paths[5]], 0.35, 'power2.out', '-=0.2');
-			draw(tl, paths[0], 0.9, 'power3.out', '-=0.1');
-
-		} else if (type === 'triangle' && paths.length >= 5) {
-			// Paths: 0=trunk, 1=triangle canopy, 2=branch-low-L, 3=branch-high-L, 4=branch-R
-			draw(tl, paths[0], 0.7, 'power2.out');
-			draw(tl, paths[2], 0.35, 'power2.out', '-=0.15');
-			draw(tl, paths[4], 0.35, 'power2.out', '-=0.2');
-			draw(tl, paths[3], 0.35, 'power2.out', '-=0.2');
-			draw(tl, paths[1], 0.9, 'power3.out', '-=0.1');
-
-		} else if (type === 'leaf' && paths.length >= 7) {
-			// Paths: 0=stem, 1=left leaf half, 2=right leaf half,
-			//        3-4=lower branch pair, 5-6=upper branch pair
-			draw(tl, paths[0], 0.7, 'power2.out');
-			draw(tl, [paths[3], paths[4]], 0.3, 'power2.out', '-=0.15');
-			draw(tl, [paths[5], paths[6]], 0.3, 'power2.out', '-=0.2');
-			draw(tl, [paths[1], paths[2]], 0.8, 'power3.out', '-=0.1');
-		}
-	});
-}
-
-/**
- * Initialization — runs non-GSAP code on DOMContentLoaded and GSAP code on load,
- * with fallbacks if those events have already fired.
- */
-function initDOM() {
+document.addEventListener('DOMContentLoaded', () => {
 	initHeroCardCycle();
 	initFancybox();
 	initMetricsGallerySlider();
 	initCtaFormParallax();
-	initVideoBlockParallax();
-}
+});
 
-function initGSAP() {
-	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-	gsap.registerPlugin(ScrollTrigger);
-
+window.addEventListener('load', () => {
 	initStaggerAnimations();
 	initStepSectionScroll();
-	initMetricsCountUp();
-	initTreeGrowth();
-
-	// Keep ScrollTrigger positions accurate after layout shifts.
-	let resizeTimer;
-	const refresh = () => {
-		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
-	};
-	window.addEventListener('resize', refresh);
-	window.addEventListener('orientationchange', refresh);
-}
-
-// DOM-dependent inits (no GSAP needed).
-if (document.readyState === 'loading') {
-	document.addEventListener('DOMContentLoaded', initDOM);
-} else {
-	initDOM();
-}
-
-// GSAP-dependent inits (need images/fonts settled for accurate trigger positions).
-if (document.readyState === 'complete') {
-	initGSAP();
-} else {
-	window.addEventListener('load', initGSAP);
-}
+});

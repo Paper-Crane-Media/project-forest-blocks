@@ -42,10 +42,9 @@ acf_add_local_field_group( [
 			'key'         => 'field_fb_features_block_body',
 			'label'       => 'Body Text',
 			'name'        => 'body',
-			'type'        => 'wysiwyg',
-			'tabs'        => 'all',
-			'toolbar'     => 'basic',
-			'media_upload' => 0,
+			'type'        => 'textarea',
+			'rows'        => 3,
+			'placeholder' => 'Pre- and post-event activities, tours and special events...',
 		],
 		[
 			'key'         => 'field_fb_features_block_cta_description',

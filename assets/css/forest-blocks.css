@@ -88,9 +88,6 @@
 	--fb-shadow-sm: 0px 4px 16px 0px rgba(0, 0, 0, 0.16);
 	--fb-shadow-card: 0px 2px 40px 0px rgba(0, 0, 0, 0.24);
 	--fb-shadow-card-elevated: 0px 2px 40px 24px rgba(0, 0, 0, 0.24);
-
-	/* ── Base text color ──────────────────────────────────────────────── */
-	color: var(--fb-color-text-primary);
 }
 
 /* ── Typography: desktop overrides at lg (1024px) ─────────────────────── */
@@ -150,87 +147,6 @@
 	padding: 0;
 }
 
-.fb h1,
-.fb h2,
-.fb h3,
-.fb h4,
-.fb h5,
-.fb h6 {
-	text-transform: none;
-}
-
-.fb h4 {
-	font-family: var(--fb-font-heading);
-	font-size: var(--fb-text-display-md);
-	font-weight: 600;
-	line-height: var(--fb-leading-display-md);
-	color: var(--fb-color-text-primary);
-}
-
-.fb h5 {
-	font-family: var(--fb-font-body);
-	font-size: var(--fb-text-display-sm);
-	font-weight: 400;
-	line-height: var(--fb-leading-display-sm);
-	color: var(--fb-color-text-primary);
-}
-
-.fb h6 {
-	font-family: var(--fb-font-body);
-}
-
-.fb p {
-	font-family: var(--fb-font-body);
-	font-size: var(--fb-text-body-lg);
-	font-weight: 400;
-	line-height: var(--fb-leading-body-lg);
-	color: inherit;
-}
-
-/* ==========================================================================
-   WYSIWYG — spacing for rich-text / wp_kses_post output.
-   ========================================================================== */
-
-.fb .wysiwyg p {
-	margin-bottom: 16px;
-}
-
-.fb .wysiwyg p:last-child {
-	margin-bottom: 0;
-}
-
-.fb .wysiwyg ul,
-.fb .wysiwyg ol {
-	margin-bottom: 16px;
-	padding-left: 1.5em;
-}
-
-.fb .wysiwyg ul:last-child,
-.fb .wysiwyg ol:last-child {
-	margin-bottom: 0;
-}
-
-.fb .wysiwyg ul {
-	list-style: disc;
-}
-
-.fb .wysiwyg ol {
-	list-style: decimal;
-}
-
-.fb .wysiwyg li {
-	margin-bottom: 4px;
-}
-
-.fb .wysiwyg h1,
-.fb .wysiwyg h2,
-.fb .wysiwyg h3,
-.fb .wysiwyg h4,
-.fb .wysiwyg h5,
-.fb .wysiwyg h6 {
-	margin-bottom: 8px;
-}
-
 .fb ol,
 .fb ul {
 	list-style: none;
@@ -247,22 +163,20 @@
 
 @media (min-width: 1024px) {
 	.fb .hero-header__card {
-		outline-color: transparent !important;
-		transition: outline-color 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+		border-color: rgba(0, 59, 69, 0.3);
+		transition: border-color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	.fb .hero-header__card--active {
-		outline-color: #fff !important;
-		transform: scale(1.01);
+		border-color: rgba(255, 255, 255, 0.85);
 	}
 
 	.fb .hero-header__card-glass {
-		background-color: rgba(0, 59, 69, 0.15);
 		transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	.fb .hero-header__card--active .hero-header__card-glass {
-		background-color: rgba(0, 59, 69, 0.40);
+		background-color: rgba(0, 59, 69, 0.25);
 	}
 }
 
@@ -319,197 +233,160 @@
 }
 
 /* ==========================================================================
-   Gravity Forms — global overrides (scoped to .fb)
-   Applies to any Gravity Form rendered inside a Forest Block.
+   CTA Form — Gravity Forms overrides
    ========================================================================== */
 
 /* Reset GF wrapper spacing */
-.fb .gform_wrapper {
-	margin: 0 !important;
-	padding: 0 !important;
+.fb .cta-form .gform_wrapper.gravity-theme {
+	margin: 0;
+	padding: 0;
 }
 
-.fb .gform_wrapper .gform_fields {
-	gap: 24px !important;
+.fb .cta-form .gform_wrapper.gravity-theme .gform_fields {
+	gap: 24px;
 }
 
-/* Labels — theme uses !important on font-size/weight, so we must too */
-.fb .gform_wrapper label.gfield_label,
-.fb .gform_wrapper legend.gfield_label,
-.fb .gform_wrapper .gform-field-label {
-	font-family: var(--fb-font-body) !important;
-	font-size: var(--fb-text-body-sm) !important;
-	line-height: var(--fb-leading-body-sm) !important;
-	color: var(--fb-color-water) !important;
-	font-weight: 400 !important;
-	margin-bottom: 4px !important;
+/* Labels */
+.fb .cta-form .gform_wrapper.gravity-theme .gfield_label,
+.fb .cta-form .gform_wrapper.gravity-theme .gform-field-label {
+	font-family: var(--fb-font-body);
+	font-size: var(--fb-text-body-sm);
+	line-height: var(--fb-leading-body-sm);
+	color: var(--fb-color-water);
+	font-weight: 400;
+	margin-bottom: 4px;
 }
 
-/* Text inputs, email, tel, number, select — theme uses !important on padding */
-.fb .gform_wrapper input[type="text"],
-.fb .gform_wrapper input[type="email"],
-.fb .gform_wrapper input[type="tel"],
-.fb .gform_wrapper input[type="number"],
-.fb .gform_wrapper input[type="url"],
-.fb .gform_wrapper select,
-.fb .gform_wrapper .gfield_select {
-	border: 1px solid var(--fb-color-grey-20) !important;
-	border-radius: var(--fb-radius-xl) !important;
-	padding: 12px 16px !important;
-	font-family: var(--fb-font-body) !important;
-	font-size: var(--fb-text-body-md) !important;
-	line-height: var(--fb-leading-body-md) !important;
-	color: var(--fb-color-forest) !important;
-	background: white !important;
-	width: 100% !important;
-	height: auto !important;
-	box-shadow: none !important;
-	outline: none !important;
-	transition: border-color 0.2s ease !important;
+/* Text inputs, email, tel, number, select */
+.fb .cta-form .gform_wrapper.gravity-theme input[type="text"],
+.fb .cta-form .gform_wrapper.gravity-theme input[type="email"],
+.fb .cta-form .gform_wrapper.gravity-theme input[type="tel"],
+.fb .cta-form .gform_wrapper.gravity-theme input[type="number"],
+.fb .cta-form .gform_wrapper.gravity-theme input[type="url"],
+.fb .cta-form .gform_wrapper.gravity-theme select {
+	border: 1px solid var(--fb-color-grey-20);
+	border-radius: var(--fb-radius-xl);
+	padding: 12px 16px;
+	font-family: var(--fb-font-body);
+	font-size: var(--fb-text-body-md);
+	line-height: var(--fb-leading-body-md);
+	color: var(--fb-color-forest);
+	background: white;
+	width: 100%;
+	height: auto;
+	box-shadow: none;
+	outline: none;
+	transition: border-color 0.2s ease;
 }
 
-.fb .gform_wrapper input:focus,
-.fb .gform_wrapper select:focus,
-.fb .gform_wrapper textarea:focus {
-	border-color: var(--fb-color-forest-80) !important;
-	box-shadow: none !important;
-	outline: none !important;
+.fb .cta-form .gform_wrapper.gravity-theme input:focus,
+.fb .cta-form .gform_wrapper.gravity-theme select:focus,
+.fb .cta-form .gform_wrapper.gravity-theme textarea:focus {
+	border-color: var(--fb-color-forest-80);
+	box-shadow: none;
+	outline: none;
 }
 
-/* Textarea — theme uses !important on padding and border-radius */
-.fb .gform_wrapper textarea {
-	border: 1px solid var(--fb-color-grey-20) !important;
-	border-radius: var(--fb-radius-md) !important;
-	padding: 12px 16px !important;
-	font-family: var(--fb-font-body) !important;
-	font-size: var(--fb-text-body-md) !important;
-	line-height: var(--fb-leading-body-md) !important;
-	color: var(--fb-color-forest) !important;
-	background: white !important;
-	width: 100% !important;
+/* Textarea */
+.fb .cta-form .gform_wrapper.gravity-theme textarea {
+	border: 1px solid var(--fb-color-grey-20);
+	border-radius: var(--fb-radius-md);
+	padding: 12px 16px;
+	font-family: var(--fb-font-body);
+	font-size: var(--fb-text-body-md);
+	line-height: var(--fb-leading-body-md);
+	color: var(--fb-color-forest);
+	background: white;
+	width: 100%;
 	min-height: 100px;
-	box-shadow: none !important;
-	outline: none !important;
+	box-shadow: none;
+	outline: none;
 	resize: vertical;
-	transition: border-color 0.2s ease !important;
+	transition: border-color 0.2s ease;
 }
 
 /* Placeholders */
-.fb .gform_wrapper input::placeholder,
-.fb .gform_wrapper textarea::placeholder {
-	color: var(--fb-color-grey-40) !important;
+.fb .cta-form .gform_wrapper.gravity-theme input::placeholder,
+.fb .cta-form .gform_wrapper.gravity-theme textarea::placeholder {
+	color: var(--fb-color-grey-40);
 }
 
 /* Date field — styled as fire link with calendar icon */
-.fb .gform_wrapper .gfield--type-date .ginput_container_date {
+.fb .cta-form .gform_wrapper.gravity-theme .gfield--type-date .ginput_container_date {
 	display: flex;
 	align-items: center;
 	gap: 8px;
 }
 
-.fb .gform_wrapper .gfield--type-date input[type="text"] {
-	border: none !important;
-	padding: 12px 0 !important;
-	font-family: var(--fb-font-display) !important;
-	font-size: var(--fb-text-button-md) !important;
-	font-weight: 600 !important;
-	color: var(--fb-color-fire) !important;
+.fb .cta-form .gform_wrapper.gravity-theme .gfield--type-date input[type="text"] {
+	border: none;
+	padding: 12px 0;
+	font-family: var(--fb-font-display);
+	font-size: var(--fb-text-button-md);
+	font-weight: 600;
+	color: var(--fb-color-fire);
 	cursor: pointer;
-	width: auto !important;
-	background: transparent !important;
-	border-radius: 0 !important;
+	width: auto;
+	background: transparent;
+	border-radius: 0;
 }
 
-.fb .gform_wrapper .gfield--type-date input[type="text"]::placeholder {
-	color: var(--fb-color-fire) !important;
+.fb .cta-form .gform_wrapper.gravity-theme .gfield--type-date input[type="text"]::placeholder {
+	color: var(--fb-color-fire);
 }
 
-/* Submit button — override theme .btn .btn-primary extends */
-.fb .gform_wrapper .gform_footer,
-.fb .gform_wrapper .gform_page_footer {
-	padding: 0 !important;
-	margin: 0 !important;
+/* Submit button */
+.fb .cta-form .gform_wrapper.gravity-theme .gform_footer,
+.fb .cta-form .gform_wrapper.gravity-theme .gform_page_footer {
+	padding: 0;
+	margin: 0;
 }
 
-.fb .gform_wrapper input[type="submit"],
-.fb .gform_wrapper button[type="submit"],
-.fb .gform_wrapper .gform_button {
-	background-color: var(--fb-color-fire) !important;
-	color: white !important;
-	border: 1px solid transparent !important;
-	border-radius: var(--fb-radius-xl) !important;
-	padding: 12px 16px !important;
+.fb .cta-form .gform_wrapper.gravity-theme input[type="submit"],
+.fb .cta-form .gform_wrapper.gravity-theme .gform_button {
+	background-color: var(--fb-color-fire);
+	color: white;
+	border: none;
+	border-radius: var(--fb-radius-xl);
+	padding: 12px 16px;
 	min-width: 156px;
-	height: 48px !important;
-	font-family: var(--fb-font-display) !important;
-	font-size: var(--fb-text-button-md) !important;
-	font-weight: 600 !important;
+	height: 48px;
+	font-family: var(--fb-font-display);
+	font-size: var(--fb-text-button-md);
+	font-weight: 600;
 	cursor: pointer;
-	transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
-	line-height: 1 !important;
-	box-shadow: none !important;
+	transition: opacity 0.3s ease;
+	line-height: 1;
 }
 
-.fb .gform_wrapper input[type="submit"]:hover,
-.fb .gform_wrapper button[type="submit"]:hover,
-.fb .gform_wrapper .gform_button:hover {
-	border-color: var(--fb-color-fire-80) !important;
-	box-shadow: 0 0 0 4px rgba(233, 84, 41, 0.15) !important;
-	background-color: var(--fb-color-fire) !important;
-	color: white !important;
+.fb .cta-form .gform_wrapper.gravity-theme input[type="submit"]:hover,
+.fb .cta-form .gform_wrapper.gravity-theme .gform_button:hover {
+	opacity: 0.9;
 }
 
 /* Validation error styling */
-.fb .gform_wrapper .gfield_error input,
-.fb .gform_wrapper .gfield_error textarea {
-	border-color: var(--fb-color-error) !important;
+.fb .cta-form .gform_wrapper.gravity-theme .gfield_error input,
+.fb .cta-form .gform_wrapper.gravity-theme .gfield_error textarea {
+	border-color: var(--fb-color-error);
 }
 
-.fb .gform_wrapper .gfield_error .gfield_label {
-	color: var(--fb-color-error) !important;
+.fb .cta-form .gform_wrapper.gravity-theme .gfield_error .gfield_label {
+	color: var(--fb-color-error);
 }
 
-.fb .gform_wrapper .validation_message {
-	font-family: var(--fb-font-body) !important;
-	font-size: var(--fb-text-body-sm) !important;
-	color: var(--fb-color-error) !important;
+.fb .cta-form .gform_wrapper.gravity-theme .validation_message {
+	font-family: var(--fb-font-body);
+	font-size: var(--fb-text-body-sm);
+	color: var(--fb-color-error);
 }
 
 /* Hide GF default styling artifacts */
-.fb .gform_wrapper .gform_validation_errors {
+.fb .cta-form .gform_wrapper.gravity-theme .gform_validation_errors {
 	border-radius: var(--fb-radius-md);
 }
 
-/* ==========================================================================
-   Block stacking — z-index for overlapping sections
-   ========================================================================== */
-
-.fb.benefits-showcase {
-	z-index: 10;
-	position: relative;
-	display: block;
-}
-
-.fb.video-block {
-	z-index: 2;
-	position: relative;
-	display: block;
-}
-
-.video-block__geo {
-	overflow-y: visible;
-	overflow-x: clip;
-}
-
 /* Geo-wave parallax layers */
-.fb .cta-form__geo img,
-.fb .video-block__geo [data-parallax-speed] {
+.fb .cta-form__geo img {
 	transition: transform 0.1s linear;
 	will-change: transform;
-}
-
-.fb .video-block__geo svg {
-	display: block;
-	width: 100%;
-	height: 100%;
 }

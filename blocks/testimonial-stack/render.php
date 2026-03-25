@@ -21,10 +21,7 @@ $cards = $b->field( 'cards', [] );
 
 	<?php if ( ! empty( $cards ) ) : ?>
 
-		<div
-			class="relative px-4 py-6 lg:px-0 lg:py-20 bg-fixed bg-cover bg-center"
-			style="background-image: url('<?php echo esc_url( FOREST_BLOCKS_URL . 'assets/images/wood_grain_bg.png' ); ?>');"
-		>
+		<div class="relative py-10 lg:py-20">
 
 			<?php foreach ( $cards as $index => $card ) : ?>
 
@@ -39,8 +36,6 @@ $cards = $b->field( 'cards', [] );
 				$author_source  = $card['author_source'] ?? '';
 				$color          = $card['color'] ?? 'forest';
 
-
-				// Tailwind safelist: text-forest text-water text-earth text-tree
 				// Map color to CSS class and pattern
 				$color_classes = [
 					'forest' => 'bg-forest border-air',
@@ -61,38 +56,37 @@ $cards = $b->field( 'cards', [] );
 				?>
 
 				<!-- Testimonial Card -->
-				<?php $sticky_pt = 8 + ( $index * 2 ); ?>
-				<div class="lg:sticky lg:top-0" style="z-index: <?php echo esc_attr( 1 + $index ); ?>; padding-top: <?php echo esc_attr( $sticky_pt ); ?>rem;">
-					<div class="relative bg-white border border-[lightgrey] lg:border-b lg:border-forest py-6 px-4 rounded-tl-[24px] rounded-tr-[24px] lg:rounded-tl-container-lg lg:rounded-tr-container-lg max-w-[1340px] mx-auto lg:px-10 lg:pb-16 lg:pt-10">
+				<div class="sticky lg:top-0 lg:pt-10" style="z-index: <?php echo esc_attr( 1 + $index ); ?>;">
+					<div class="bg-[#fff] border-forest border-b pb-10 pt-10 px-6 rounded-tl-container-lg rounded-tr-container-lg lg:px-10 lg:pb-16 lg:pt-10">
 
 						<!-- Desktop: flex row, Mobile: flex col -->
-						<div class="flex flex-col lg:flex-row lg:gap-10 lg:items-center" data-stagger="true">
+						<div class="flex flex-col lg:flex-row lg:gap-10 lg:items-start" data-stagger="true">
 
 							<!-- Left Content Column -->
 							<div class="flex-1 lg:max-w-[600px]">
 
 								<!-- Header Groups -->
-								<div class="flex flex-col gap-4 pb-10" data-stagger="true">
+								<div class="flex flex-col gap-4 pb-10 mb-10 border-b border-grey-20" data-stagger="true">
 
 									<!-- Heading -->
 									<?php if ( $heading ) : ?>
-										<h5 class="font-semibold">
+										<h2 class="font-heading text-display-sm font-semibold text-forest">
 											<?php echo esc_html( $heading ); ?>
-										</h5>
+										</h2>
 									<?php endif; ?>
 
 									<!-- Subheading -->
 									<?php if ( $subheading ) : ?>
-										<h5>
+										<p class="font-heading text-display-sm font-semibold text-forest">
 											<?php echo esc_html( $subheading ); ?>
-										</h5>
+										</p>
 									<?php endif; ?>
 
 									<!-- Body -->
 									<?php if ( $body ) : ?>
-										<div class="wysiwyg">
-											<?php echo wp_kses_post( $body ); ?>
-										</div>
+										<p class="font-body text-body-lg text-forest">
+											<?php echo esc_html( $body ); ?>
+										</p>
 									<?php endif; ?>
 
 								</div>
@@ -101,7 +95,7 @@ $cards = $b->field( 'cards', [] );
 								<?php if ( ! empty( $cta['url'] ) || $caption ) : ?>
 									<div class="flex flex-col gap-4">
 										<?php if ( $caption ) : ?>
-											<p>
+											<p class="font-body text-body-lg text-forest">
 												<?php echo esc_html( $caption ); ?>
 											</p>
 										<?php endif; ?>
@@ -114,48 +108,50 @@ $cards = $b->field( 'cards', [] );
 
 							<!-- Right Circle/Quote Column -->
 							<?php if ( $quote && $author ) : ?>
-								<div class="flex-shrink-0 mt-10 self-center lg:mt-0 lg:self-auto">
+								<div class="flex-shrink-0 mt-10 lg:mt-0">
 
 									<!-- Outer Circle Container -->
-									<div class="relative flex items-center justify-center rounded-full w-full max-w-[311px] p-4 lg:max-w-none lg:size-[514px] lg:p-[42px]">
+									<div class="relative inline-flex items-center justify-center rounded-full size-[340px] lg:size-[380px]">
 
 										<!-- Background pattern overlay -->
 										<div aria-hidden="true" class="absolute inset-0 rounded-full pointer-events-none">
 											<div class="absolute inset-0 rounded-full <?php echo esc_attr( $color_classes[ $color ] ); ?>"></div>
 											<div
-												class="absolute inset-0 rounded-full opacity-[0.16]"
+												class="absolute inset-0 rounded-full mix-blend-overlay opacity-16"
 												style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: 86px 90px;"
 												aria-hidden="true"
 											></div>
 										</div>
 
-										<!-- Inner Quote Circle (oval on mobile, circle on desktop) -->
-										<div class="relative z-10 flex items-center justify-end rounded-full <?php echo esc_attr( $color_classes[ $color ] ); ?> border-2 border-solid border-air shadow-card px-8 pb-6 w-[279px] h-[430px] lg:size-[430px] flex-col gap-6">
+										<!-- Inner Quote Circle -->
+										<div class="relative z-10 inline-flex items-center justify-center rounded-full <?php echo esc_attr( $color_classes[ $color ] ); ?> border-2 border-air shadow-card p-8 size-[280px] lg:size-[320px] flex-col gap-6">
 
 											<!-- Quote Mark Icon -->
-											<div class="text-air flex-shrink-0">
-												<?php include FOREST_BLOCKS_PATH . 'assets/images/icon-quote.svg'; ?>
-											</div>
+											<svg class="h-8 w-8 lg:h-10 lg:w-10 text-[#fff] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+												<path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.25-2-7-2s-7 .75-7 2v10c0 1 0 7 7 7z"/>
+											</svg>
 
 											<!-- Quote Text -->
-											<p class="font-semibold text-[#fff] text-center">
+											<p class="font-body text-body-lg font-semibold text-[#fff] text-center">
 												<?php echo esc_html( $quote ); ?>
 											</p>
 
 											<!-- Author Attribution -->
 											<div class="flex flex-col gap-1 text-center">
-												<h6 class="text-display-xs font-semibold text-[#fff]">
+												<p class="font-heading text-display-xs font-semibold text-[#fff]">
 													<?php echo esc_html( $author ); ?>
-												</h6>
+												</p>
 												<?php if ( $author_source ) : ?>
-													<p class="text-[#fff] opacity-80">
+													<p class="font-body text-body-lg text-[#fff] opacity-80">
 														<?php echo esc_html( $author_source ); ?>
 													</p>
 												<?php endif; ?>
 											</div>
 
-											<!-- Decorative Leaf Icon -->
-											<div data-tree-grow="leaf" class="lg:translate-y-[25px]"><?php echo fb_leaf_icon( 'text-air' ); ?></div>
+											<!-- Decorative Tree Icon -->
+											<svg class="h-6 w-6 text-[#fff] flex-shrink-0 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m0 0L6 18m6-6l6 6"/>
+											</svg>
 
 										</div>
 
@@ -164,16 +160,6 @@ $cards = $b->field( 'cards', [] );
 								</div>
 							<?php endif; ?>
 
-						</div>
-
-						<!-- Bottom Decorative Trees (desktop only) -->
-						<div class="hidden lg:flex items-end justify-center gap-2 absolute bottom-0 left-1/2 -translate-x-1/2 text-<?php echo esc_attr( $color ); ?>" aria-hidden="true" data-tree-grow-group>
-							<div class="h-[56px] lg:h-[124px]" data-tree-grow="simple">
-								<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-simple.svg'; ?>
-							</div>
-							<div class="h-[54px] lg:h-[126px]" data-tree-grow="triangle" data-tree-delay="0.5">
-								<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-triangle.svg'; ?>
-							</div>
 						</div>
 
 					</div>

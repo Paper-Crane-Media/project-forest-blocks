@@ -41,7 +41,7 @@ $image      = $b->field( 'image' );
 
 		<!-- Card -->
 		<div class="relative px-6 py-10 lg:px-8 lg:py-16">
-			<div class="mx-auto w-[94%] max-w-container overflow-hidden rounded-container-md bg-forest shadow-card-elevated">
+			<div class="mx-auto max-w-container overflow-hidden rounded-container-md bg-forest shadow-card-elevated">
 				<div class="flex flex-col lg:flex-row lg:items-stretch">
 
 					<!-- Image (left on desktop, top on mobile) -->
@@ -56,24 +56,12 @@ $image      = $b->field( 'image' );
 					<?php endif; ?>
 
 					<!-- Content (right on desktop, below on mobile) -->
-					<div data-stagger="true" class="flex flex-1 flex-col items-start justify-center gap-4 p-6 lg:py-16 lg:pl-16 lg:pr-20">
+					<div data-stagger="true" class="flex flex-1 flex-col items-start justify-center p-6 lg:gap-16 lg:py-16 lg:pl-16 lg:pr-20">
 
 						<?php if ( $heading ) : ?>
-							<h4 class="text-[#fff]">
+							<h2 class="pb-10 font-heading text-display-md font-semibold text-[#fff] lg:pb-0">
 								<?php echo esc_html( $heading ); ?>
-							</h4>
-						<?php endif; ?>
-
-						<?php if ( $subheading ) : ?>
-							<h5 class="text-[#fff]">
-								<?php echo esc_html( $subheading ); ?>
-							</h5>
-						<?php endif; ?>
-
-						<?php if ( $body ) : ?>
-							<div class="wysiwyg text-[#fff]">
-								<?php echo wp_kses_post( $body ); ?>
-							</div>
+							</h2>
 						<?php endif; ?>
 
 						<?php echo fb_button( $cta ); ?>
@@ -88,22 +76,9 @@ $image      = $b->field( 'image' );
 
 <?php else : ?>
 
-	<div class="relative bg-[#fff] py-10 lg:py-16">
+	<div class="bg-[#fff] py-10 lg:py-16">
 
-		<!-- Decorative trees (bottom-left, desktop only) -->
-		<div class="pointer-events-none absolute bottom-0 left-20 hidden items-end gap-7 text-forest lg:flex" aria-hidden="true" data-tree-grow-group>
-			<div class="h-[114px] w-[52px]" data-tree-grow="pine" data-tree-delay="0.4">
-				<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-pine.svg'; ?>
-			</div>
-			<div class="h-[83px] w-[37px]" data-tree-grow="simple">
-				<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-simple.svg'; ?>
-			</div>
-			<div class="ml-20 h-[61px] w-[42px]" data-tree-grow="round" data-tree-delay="0.2">
-				<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-round.svg'; ?>
-			</div>
-		</div>
-
-		<div class="mx-auto w-[94%] max-w-container">
+		<div class="mx-auto max-w-container px-6 lg:px-20">
 			<div class="flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
 
 				<!-- Content -->
@@ -116,21 +91,21 @@ $image      = $b->field( 'image' );
 					<?php endif; ?>
 
 					<?php if ( $heading ) : ?>
-						<h4 class="max-w-[768px]">
+						<h2 class="max-w-[768px] font-heading text-display-md font-semibold text-forest">
 							<?php echo esc_html( $heading ); ?>
-						</h4>
+						</h2>
 					<?php endif; ?>
 
 					<?php if ( $subheading ) : ?>
-						<h5>
+						<p class="font-heading text-display-sm text-forest">
 							<?php echo esc_html( $subheading ); ?>
-						</h5>
+						</p>
 					<?php endif; ?>
 
 					<?php if ( $body ) : ?>
-						<div class="wysiwyg">
-							<?php echo wp_kses_post( $body ); ?>
-						</div>
+						<p class="font-body text-body-lg text-forest">
+							<?php echo esc_html( $body ); ?>
+						</p>
 					<?php endif; ?>
 
 					<?php echo fb_button( $cta, 'Learn More', 'mt-6' ); ?>

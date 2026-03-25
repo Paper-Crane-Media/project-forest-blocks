@@ -29,7 +29,7 @@ $cta_links      = $b->field( 'cta_links', [] );
 
 <!-- Zone 1: Dark forest hero -->
 <div class="bg-forest relative overflow-hidden">
-	<div class="mx-auto max-w-[1280px] px-4 py-6 lg:px-10 lg:pb-12 lg:pt-10">
+	<div class="mx-auto max-w-[1280px] px-6 pb-12 pt-10 lg:px-10">
 		<div class="flex flex-col gap-6 lg:flex-row lg:items-start">
 
 			<!-- Left column: text + features -->
@@ -45,20 +45,20 @@ $cta_links      = $b->field( 'cta_links', [] );
 						<?php endif; ?>
 
 						<?php if ( $heading ) : ?>
-							<h4 class="text-[#fff]">
+							<h2 class="font-heading text-display-md font-semibold text-[#fff]">
 								<?php echo esc_html( $heading ); ?>
-							</h4>
+							</h2>
 						<?php endif; ?>
 					</div>
 
 					<?php if ( $subheading ) : ?>
-						<h5 class="text-[#fff]">
+						<p class="font-heading text-display-sm text-[#fff]">
 							<?php echo esc_html( $subheading ); ?>
-						</h5>
+						</p>
 					<?php endif; ?>
 
 					<?php if ( $body ) : ?>
-						<p class="text-[#fff]">
+						<p class="font-body text-body-lg text-[#fff]">
 							<?php echo esc_html( $body ); ?>
 						</p>
 					<?php endif; ?>
@@ -95,7 +95,7 @@ $cta_links      = $b->field( 'cta_links', [] );
 			<!-- Right column: image mosaic (2x2 asymmetric grid) -->
 			<?php if ( ! empty( $images ) ) : ?>
 				<div class="w-full lg:w-[636px] lg:shrink-0">
-					<div class="flex h-[375px] gap-1 lg:h-[564px]">
+					<div class="flex h-[320px] gap-1 lg:h-[564px]">
 						<!-- Column 1: tall top, short bottom -->
 						<div class="flex flex-1 flex-col gap-1" data-stagger="true">
 							<?php if ( ! empty( $images[0]['image'] ) ) : ?>
@@ -149,32 +149,26 @@ $cta_links      = $b->field( 'cta_links', [] );
 		</div>
 	</div>
 
-	<!-- Decorative trees (mobile) -->
-	<div class="flex items-end justify-end gap-6 px-4 pb-6 text-forest-5 lg:hidden" aria-hidden="true" data-stagger="true" data-tree-grow-group>
-		<div class="h-[90px] w-[62px]" data-tree-grow="round">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-round.svg'; ?>
-		</div>
-		<div class="h-[137px] w-[42px]" data-tree-grow="simple" data-tree-delay="0.2">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-simple.svg'; ?>
-		</div>
-	</div>
-
-	<!-- Decorative trees (desktop) -->
-	<div class="pointer-events-none absolute bottom-0 right-[18%] hidden items-end gap-6 text-[#fff] lg:flex" aria-hidden="true" data-stagger="true" data-tree-grow-group>
-		<div class="h-[90px]" data-tree-grow="round">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-round.svg'; ?>
-		</div>
-		<div class="h-[138px]" data-tree-grow="simple" data-tree-delay="0.2">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-simple.svg'; ?>
-		</div>
+	<!-- Decorative trees (desktop only) -->
+	<div class="pointer-events-none absolute bottom-0 right-10 hidden items-end gap-6 lg:flex" aria-hidden="true" data-stagger="true">
+		<img
+			src="<?php echo esc_url( FOREST_BLOCKS_URL . 'assets/images/tree-large.svg' ); ?>"
+			alt=""
+			class="h-[204px] w-[140px]"
+		/>
+		<img
+			src="<?php echo esc_url( FOREST_BLOCKS_URL . 'assets/images/tree-small.svg' ); ?>"
+			alt=""
+			class="h-[204px] w-[92px]"
+		/>
 	</div>
 </div>
 
 <!-- Zone 2: Fire CTA bar -->
 <?php if ( ! empty( $cta_links ) ) : ?>
-	<div class="bg-fire px-4 py-4 lg:px-10 lg:py-6">
-		<div class="mx-auto max-w-[1280px] rounded-container-md bg-fire-60 p-6">
-			<div class="flex flex-col gap-6">
+	<div class="bg-fire p-6">
+		<div class="rounded-container-md bg-fire-60 p-6">
+			<div class="mx-auto flex max-w-[1280px] flex-col gap-6">
 				<?php foreach ( $cta_links as $cta ) : ?>
 					<?php
 					$cta_heading = $cta['heading'] ?? '';
@@ -183,9 +177,9 @@ $cta_links      = $b->field( 'cta_links', [] );
 					<?php if ( $cta_heading || ! empty( $cta_link['url'] ) ) : ?>
 						<div class="flex flex-col gap-4">
 							<?php if ( $cta_heading ) : ?>
-								<h6 class="text-display-xs font-semibold text-[#fff]">
+								<p class="font-heading text-display-xs font-semibold text-[#fff]">
 									<?php echo esc_html( $cta_heading ); ?>
-								</h6>
+								</p>
 							<?php endif; ?>
 
 							<?php echo fb_text_link( $cta_link ); ?>

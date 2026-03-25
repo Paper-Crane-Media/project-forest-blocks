@@ -21,21 +21,12 @@ $geo_base = FOREST_BLOCKS_URL . 'assets/images/';
 ?>
 <?php $b->open_tag( 'cta-form' ); ?>
 
-<div class="relative overflow-clip bg-forest py-10 lg:py-20">
+<div class="relative overflow-hidden bg-forest py-10 lg:py-20">
 
 	<!-- ── Geo-wave banner (parallax) ──────────────────────────────────── -->
-	<div class="
-		cta-form__geo 
-		pointer-events-none 
-		absolute 
-		inset-x-0 
-		top-0 
-		h-[150px] 
-		lg:h-[296px] 
-		w-[120%]
-		-translate-x-[10%]
-		-scale-y-100"
-		 aria-hidden="true">
+	<div class="cta-form__geo pointer-events-none absolute inset-x-0 top-0 h-[150px] lg:h-[296px]"
+		 aria-hidden="true"
+		 style="transform: scaleY(-1);">
 		<img
 			src="<?php echo esc_url( $geo_base . 'geo-wave-1.svg' ); ?>"
 			alt=""
@@ -66,8 +57,8 @@ $geo_base = FOREST_BLOCKS_URL . 'assets/images/';
 	</div>
 
 	<!-- ── Content ─────────────────────────────────────────────────────── -->
-	<div class="relative pt-24 lg:pt-0 z-10 mx-auto max-w-[1280px] px-6 lg:px-0">
-		<div class="flex flex-col gap-6 overflow-hidden rounded-container-lg p-6 lg:flex-row lg:items-center lg:p-8">
+	<div class="relative z-10 mx-auto max-w-[1280px] px-6 lg:px-0">
+		<div class="flex flex-col gap-6 overflow-hidden rounded-container-lg p-6 shadow-sm lg:flex-row lg:items-center lg:p-8">
 
 			<!-- Left: heading -->
 			<?php if ( $heading ) : ?>

@@ -87,7 +87,7 @@ export default {
 				'card-elevated': 'var(--fb-shadow-card-elevated)',
 			},
 			maxWidth: {
-				container: '1260px',
+				container: '1440px',
 				content: '1024px',
 			},
 		},

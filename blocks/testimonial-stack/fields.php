@@ -45,10 +45,9 @@ acf_add_local_field_group( [
 					'key'         => 'field_fb_testimonial_stack_card_body',
 					'label'       => 'Body Text',
 					'name'        => 'body',
-					'type'        => 'wysiwyg',
-					'tabs'        => 'all',
-					'toolbar'     => 'full',
-					'media_upload' => 0,
+					'type'        => 'textarea',
+					'rows'        => 3,
+					'placeholder' => 'Main content text',
 				],
 				[
 					'key'         => 'field_fb_testimonial_stack_card_caption',

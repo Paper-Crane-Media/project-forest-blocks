@@ -56,14 +56,6 @@ acf_add_local_field_group( [
 			'instructions'  => 'Thumbnail image for the video area. Clicking the play button opens the YouTube video in a lightbox.',
 		],
 		[
-			'key'          => 'field_fb_video_block_video_url',
-			'label'        => 'Video URL',
-			'name'         => 'video_url',
-			'type'         => 'url',
-			'placeholder'  => 'https://example.com/video.mp4',
-			'instructions' => 'Optional. Direct video file URL (mp4/webm). When set, replaces the thumbnail with an autoplaying looped video.',
-		],
-		[
 			'key'          => 'field_fb_video_block_youtube_url',
 			'label'        => 'YouTube URL',
 			'name'         => 'youtube_url',

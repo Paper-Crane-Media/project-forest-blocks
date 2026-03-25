@@ -20,7 +20,6 @@ $body             = $b->field( 'body', '' );
 $button           = $b->field( 'button' );
 $background_image = $b->field( 'background_image' );
 $video_thumbnail  = $b->field( 'video_thumbnail' );
-$video_url        = $b->field( 'video_url', '' );
 $youtube_url      = $b->field( 'youtube_url', '' );
 
 $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
@@ -38,11 +37,11 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 	</div>
 
 	<!-- Card section -->
-	<div class="relative pt-10 lg:pt-20">
-		<div class="mx-auto w-[94%] max-w-container">
+	<div class="relative px-4 pt-10 lg:px-8 lg:pt-20">
+		<div class="mx-auto max-w-[1290px]">
 
-			<!-- Outer card frame — bg image peeks through top + sides -->
-			<div class="relative overflow-hidden rounded-t-container-lg shadow-card-elevated">
+			<!-- Outer card frame — bg image peeks through the top gap -->
+			<div class="relative overflow-hidden rounded-t-container-lg shadow-card">
 
 				<?php if ( ! empty( $background_image['url'] ) ) : ?>
 					<img
@@ -52,32 +51,29 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 					/>
 				<?php endif; ?>
 
-				<!-- Padding wrapper so bg-image shows around the content card -->
-				<div class="relative px-6 pt-6 lg:px-32 lg:pt-16">
-					<!-- White content panel -->
-					<div class="rounded-t-container-lg bg-white shadow-card">
-						<div class="px-4 py-4 lg:px-16 lg:py-10">
-							<div class="mx-auto flex max-w-[736px] flex-col items-center text-center" data-stagger="true">
+				<!-- White content panel -->
+				<div class="relative mt-16 rounded-t-container-lg bg-[#fff] shadow-card">
+					<div class="px-6 py-10 lg:px-16">
+						<div class="mx-auto flex max-w-[736px] flex-col items-center text-center">
 
-								<!-- Header group -->
-								<div class="flex w-full flex-col gap-4 pb-6 lg:pb-10" data-stagger="true">
-									<?php if ( $heading ) : ?>
-										<h4>
-											<?php echo esc_html( $heading ); ?>
-										</h4>
-									<?php endif; ?>
+							<!-- Header group -->
+							<div class="flex w-full flex-col gap-4 pb-10">
+								<?php if ( $heading ) : ?>
+									<h2 class="font-heading text-display-md font-semibold text-forest">
+										<?php echo esc_html( $heading ); ?>
+									</h2>
+								<?php endif; ?>
 
-									<?php if ( $body ) : ?>
-										<p>
-											<?php echo esc_html( $body ); ?>
-										</p>
-									<?php endif; ?>
-								</div>
-
-								<!-- CTA button -->
-								<?php echo fb_button( $button ); ?>
-
+								<?php if ( $body ) : ?>
+									<p class="font-body text-body-lg text-forest">
+										<?php echo esc_html( $body ); ?>
+									</p>
+								<?php endif; ?>
 							</div>
+
+							<!-- CTA button -->
+							<?php echo fb_button( $button ); ?>
+
 						</div>
 					</div>
 				</div>
@@ -88,24 +84,8 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 
 	<!-- Video section -->
 	<div class="relative">
-		<?php if ( $youtube_url ) : ?>
-			<a
-				href="<?php echo esc_url( $youtube_url ); ?>"
-				data-fancybox
-				class="group relative block aspect-[5/2] w-full cursor-pointer overflow-hidden rounded-t-container-md"
-				aria-label="<?php esc_attr_e( 'Play video', 'forest-blocks' ); ?>"
-			>
-		<?php else : ?>
-			<div class="group relative aspect-[5/2] w-full overflow-hidden rounded-t-container-md">
-		<?php endif; ?>
-
-			<?php if ( $video_url ) : ?>
-				<video
-					src="<?php echo esc_url( $video_url ); ?>"
-					autoplay loop muted playsinline
-					class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-				></video>
-			<?php elseif ( ! empty( $video_thumbnail['url'] ) ) : ?>
+		<div class="group relative aspect-video w-full overflow-hidden cursor-pointer">
+			<?php if ( ! empty( $video_thumbnail['url'] ) ) : ?>
 				<img
 					src="<?php echo esc_url( $video_thumbnail['url'] ); ?>"
 					alt="<?php echo esc_attr( $video_thumbnail['alt'] ?? '' ); ?>"
@@ -113,43 +93,33 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 				/>
 			<?php endif; ?>
 
-			<?php if ( $youtube_url ) : ?>
-				<!-- Play icon (visual only — entire area is the click target) -->
-				<div class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white transition-transform duration-300 group-hover:scale-110 h-10 w-10 lg:h-[131px] lg:w-[131px]">
-					<?php include FOREST_BLOCKS_PATH . 'assets/images/play-circle.svg'; ?>
-				</div>
-			<?php endif; ?>
+			<!-- Dark overlay for play button contrast -->
+			<div class="pointer-events-none absolute inset-0 bg-black/30 transition-colors duration-500 group-hover:bg-black/20"></div>
 
-		<?php if ( $youtube_url ) : ?>
-			</a>
-		<?php else : ?>
-			</div>
-		<?php endif; ?>
+			<?php if ( $youtube_url ) : ?>
+				<a
+					href="<?php echo esc_url( $youtube_url ); ?>"
+					data-fancybox
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-transform duration-300 hover:scale-110"
+					aria-label="<?php esc_attr_e( 'Play video', 'forest-blocks' ); ?>"
+				>
+					<svg class="h-12 w-12 lg:h-16 lg:w-16" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="24" cy="24" r="22" stroke="white" stroke-width="2"/>
+						<path d="M20 14l14 10-14 10V14z" fill="white"/>
+					</svg>
+				</a>
+			<?php endif; ?>
+		</div>
 	</div>
 
-	<!-- Geo-banner wave parallax layers — overlaps bottom of video -->
-	<div class="video-block__geo pointer-events-none relative w-full" aria-hidden="true"
-		style="height: clamp(60px, 8vw, 120px);">
-		<!-- Fire — furthest back, slowest -->
-		<div class="absolute inset-x-0 bottom-0 text-fire" data-parallax-speed="0.03"
-			style="height: 200%;">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-fire.svg'; ?>
-		</div>
-		<!-- Fire-40 -->
-		<div class="absolute inset-x-0 bottom-0 text-fire-40" data-parallax-speed="0.06"
-			style="height: 200%;">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-fire-40.svg'; ?>
-		</div>
-		<!-- Fire-20 -->
-		<div class="absolute inset-x-0 bottom-0 text-fire-20" data-parallax-speed="0.09"
-			style="height: 200%;">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-fire-20.svg'; ?>
-		</div>
-		<!-- Air — closest to viewer, fastest -->
-		<div class="absolute inset-x-0 bottom-0 text-air" data-parallax-speed="0.12"
-			style="height: 200%;">
-			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-air.svg'; ?>
-		</div>
+	<!-- Geo-banner wave decoration -->
+	<div class="relative w-full overflow-hidden" aria-hidden="true">
+		<svg class="block w-full" viewBox="0 0 2217 160" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height: clamp(60px, 8vw, 120px);">
+			<path d="M0 30C180 70 450 10 700 40S1100 80 1400 30S1800 60 2217 25V160H0Z" fill="var(--fb-color-fire-20, #f8cab0)"/>
+			<path d="M0 70C300 40 500 90 800 60S1200 30 1500 70S1900 45 2217 65V160H0Z" fill="var(--fb-color-fire-40, #ed754a)"/>
+			<path d="M0 95C250 75 550 110 850 85S1250 65 1550 100S1850 80 2217 90V160H0Z" fill="var(--fb-color-fire, #e95429)"/>
+			<path d="M0 120C200 110 500 130 800 115S1200 100 1500 125S1900 110 2217 120V160H0Z" fill="var(--fb-color-fire-60, #da3a1c)"/>
+		</svg>
 	</div>
 
 </div>

@@ -90,15 +90,6 @@ acf_add_local_field_group( [
 					'placeholder' => 'We restore degraded landscapes...',
 				],
 				[
-					'key'            => 'field_fb_benefits_showcase_card_check_color',
-					'label'          => 'Checkmark Color',
-					'name'           => 'check_color',
-					'type'           => 'color_picker',
-					'instructions'   => 'Optional. Sets the color of the checkmark icons in this card.',
-					'default_value'  => '',
-					'enable_opacity' => 0,
-				],
-				[
 					'key'      => 'field_fb_benefits_showcase_card_benefits',
 					'label'    => 'Benefits',
 					'name'     => 'benefits',
