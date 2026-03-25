@@ -30,7 +30,7 @@ $silhouette_url = FOREST_BLOCKS_URL . 'assets/images/forest-silhouette.svg';
 	<div class="relative z-10 mx-auto max-w-[1280px] px-6 pt-16 lg:px-10">
 		<?php if ( $heading ) : ?>
 			<div class="max-w-[980px] pb-10">
-				<h2 class="font-display text-display-xl font-semibold text-forest">
+				<h2 class="font-display">
 					<?php echo esc_html( $heading ); ?>
 				</h2>
 			</div>
@@ -38,10 +38,12 @@ $silhouette_url = FOREST_BLOCKS_URL . 'assets/images/forest-silhouette.svg';
 	</div>
 
 	<!-- ── Forest silhouette (decorative) ───────────────────────────── -->
-	<div class="pointer-events-none relative z-0 -mt-10 lg:-mt-20" aria-hidden="true">
+	<div class="pointer-events-none relative z-0 -mt-10 lg:-mt-20 min-h-[120px] lg:min-h-[280px]" aria-hidden="true">
 		<img
 			src="<?php echo esc_url( $silhouette_url ); ?>"
 			alt=""
+			loading="eager"
+			fetchpriority="high"
 			class="block w-[120%] max-w-[120%] -translate-x-[10%] translate-y-12 object-contain"
 		/>
 	</div>
@@ -76,7 +78,7 @@ $silhouette_url = FOREST_BLOCKS_URL . 'assets/images/forest-silhouette.svg';
 				<!-- Left: heading + body -->
 				<div class="flex flex-1 flex-col gap-4 lg:pb-10">
 					<?php if ( $card_heading ) : ?>
-						<h3 class="font-heading text-display-lg font-semibold text-[#fff]">
+						<h3 class="text-[#fff]">
 							<?php echo esc_html( $card_heading ); ?>
 						</h3>
 					<?php endif; ?>

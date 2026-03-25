@@ -45,34 +45,31 @@ $geo_base = FOREST_BLOCKS_URL . 'assets/images/';
 		<img
 			src="<?php echo esc_url( $geo_base . 'geo-wave-2.svg' ); ?>"
 			alt=""
-			class="absolute bottom-0 left-0 right-0 w-full"
-			style="height: 87.62%;"
+			class="absolute bottom-0 left-0 right-0 w-full h-[87.62%]"
 			data-parallax-speed="0.15"
 		/>
 		<img
 			src="<?php echo esc_url( $geo_base . 'geo-wave-3.svg' ); ?>"
 			alt=""
-			class="absolute bottom-0 left-0 right-0 w-full"
-			style="height: 70.93%;"
+			class="absolute bottom-0 left-0 right-0 w-full h-[70.93%]"
 			data-parallax-speed="0.1"
 		/>
 		<img
 			src="<?php echo esc_url( $geo_base . 'geo-wave-4.svg' ); ?>"
 			alt=""
-			class="absolute bottom-0 left-0 right-0 w-full"
-			style="height: 54.87%;"
+			class="absolute bottom-0 left-0 right-0 w-full h-[54.87%]"
 			data-parallax-speed="0.05"
 		/>
 	</div>
 
 	<!-- ── Content ─────────────────────────────────────────────────────── -->
-	<div class="relative pt-24 lg:pt-0 z-10 mx-auto max-w-[1280px] px-6 lg:px-0">
+	<div class="relative pt-24 lg:pt-0 z-10 mx-auto w-[94%] max-w-container">
 		<div class="flex flex-col gap-6 overflow-hidden rounded-container-lg p-6 lg:flex-row lg:items-center lg:p-8">
 
 			<!-- Left: heading -->
 			<?php if ( $heading ) : ?>
 				<div class="flex flex-1 items-center px-0 lg:px-6">
-					<h2 class="max-w-[768px] font-heading text-display-lg font-semibold text-[#fff]">
+					<h2 class="max-w-[768px] text-display-lg text-[#fff]">
 						<?php echo esc_html( $heading ); ?>
 					</h2>
 				</div>

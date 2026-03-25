@@ -170,11 +170,11 @@ $images      = $b->field( 'images', [] );
 							</div>
 
 							<!-- Gallery Controls -->
-							<div class="relative flex items-center justify-between overflow-hidden">
+							<div class="relative flex items-center justify-between overflow-visible">
 								<div class="absolute inset-0 backdrop-blur-[12px] bg-forest/10 mix-blend-lighten pointer-events-none rounded-[128px]" aria-hidden="true"></div>
 
 								<!-- Label -->
-								<h6 class="relative text-display-xs font-semibold text-forest">
+								<h6 class="relative">
 									<?php esc_html_e( 'Project photos', 'forest-blocks' ); ?>
 								</h6>
 
@@ -183,7 +183,7 @@ $images      = $b->field( 'images', [] );
 
 									<!-- Prev Button -->
 									<button
-										class="metrics-gallery__prev-btn bg-fire rounded-container-xl p-3 flex items-center justify-center border-0 hover:opacity-90 transition-opacity"
+										class="metrics-gallery__prev-btn bg-fire rounded-container-xl p-2.5 flex items-center justify-center border-0 hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-fire focus-visible:ring-offset-2"
 										aria-label="<?php esc_attr_e( 'Previous image', 'forest-blocks' ); ?>"
 									>
 										<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -193,7 +193,7 @@ $images      = $b->field( 'images', [] );
 
 									<!-- Next Button -->
 									<button
-										class="metrics-gallery__next-btn bg-fire rounded-container-xl p-3 flex items-center justify-center border-0 hover:opacity-90 transition-opacity"
+										class="metrics-gallery__next-btn bg-fire rounded-container-xl p-2.5 flex items-center justify-center border-0 hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-fire focus-visible:ring-offset-2"
 										aria-label="<?php esc_attr_e( 'Next image', 'forest-blocks' ); ?>"
 									>
 										<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

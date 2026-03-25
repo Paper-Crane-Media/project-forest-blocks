@@ -41,7 +41,7 @@ $bg_image   = $b->field( 'background_image' );
 
 				<!-- Heading -->
 				<div class="lg:flex-1">
-					<h1 class="font-display text-display-xxl font-semibold text-forest lg:max-w-[722px] lg:text-white">
+					<h1 class="lg:max-w-[722px] lg:text-white">
 						<?php echo esc_html( $heading ); ?>
 					</h1>
 				</div>
@@ -62,7 +62,7 @@ $bg_image   = $b->field( 'background_image' );
 							<div class="hero-header__card relative rounded-container-md outline outline-2 outline-grey-20 p-4">
 								<div class="hero-header__card-glass pointer-events-none absolute inset-0 rounded-container-md bg-grey-5 lg:bg-transparent lg:backdrop-blur-[20px]" aria-hidden="true"></div>
 								<div class="relative flex flex-col gap-1.5">
-									<h6 class="text-display-xs font-semibold text-forest lg:text-white">
+									<h6 class="lg:text-white">
 										<?php echo esc_html( $card['title'] ?? '' ); ?>
 									</h6>
 									<p class="lg:text-white">

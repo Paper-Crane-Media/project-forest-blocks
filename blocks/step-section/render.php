@@ -23,7 +23,7 @@ $steps   = $b->field( 'steps', [] );
 
 <div>
 	<!-- Tree header: dark forest bg with tree silhouette overlay -->
-	<div class="relative overflow-hidden bg-forest-80" style="height: clamp(180px, 25vw, 352px);">
+	<div class="relative overflow-hidden bg-forest-80 h-[clamp(180px,25vw,352px)]">
 		<div class="w-[120%] -translate-x-[10%] h-full">
 			<img
 				src="<?php echo esc_url( FOREST_BLOCKS_URL . 'assets/images/tree-header.svg' ); ?>"
@@ -42,13 +42,13 @@ $steps   = $b->field( 'steps', [] );
 			<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-10">
 
 				<!-- LEFT COLUMN: Sticky on desktop -->
-				<div class="flex flex-col lg:sticky lg:top-6 lg:flex-1 lg:self-start">
+				<div class="flex flex-col lg:sticky lg:top-[5.5rem] lg:flex-1 lg:self-start">
 
 					<!-- Header group -->
-					<div class="flex flex-col gap-3 pb-10">
+					<div class="flex flex-col gap-3 pb-4">
 						<?php if ( $eyebrow ) : ?>
 							<div class="self-start">
-								<?php echo fb_eyebrow( $eyebrow, 'text-eyebrow-sm' ); ?>
+								<?php echo fb_eyebrow( $eyebrow ); ?>
 							</div>
 						<?php endif; ?>
 
@@ -105,8 +105,7 @@ $steps   = $b->field( 'steps', [] );
 									<div class="step-section__circle relative z-10 ml-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-forest p-2 transition-opacity duration-300 <?php echo 0 !== $i ? 'opacity-30' : ''; ?>">
 										<!-- Decorative arc (forest-80 curved line wrapping left side of circle) -->
 										<svg
-											class="step-section__arc half-circle absolute w-[150%] h-[130%] -ml-[75%] transition-opacity duration-300 <?php echo 0 !== $i ? 'opacity-30' : ''; ?>"
-											style="transform:rotate(-90deg) scaleY(-1);"
+											class="step-section__arc half-circle absolute w-[150%] h-[130%] -ml-[75%] -rotate-90 -scale-y-100 transition-opacity duration-300 <?php echo 0 !== $i ? 'opacity-30' : ''; ?>"
 											viewBox="0 0 93.4072 49.4072"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -116,10 +115,10 @@ $steps   = $b->field( 'steps', [] );
 										</svg>
 										<span class="step-section__number flex font-display text-display-md font-semibold leading-none text-air transition-transform duration-300 <?php echo 0 === $i ? 'scale-[1.02]' : ''; ?>">
 											<?php foreach ( str_split( $step_num ) as $d ) : ?>
-												<span class="step-section__digit inline-block overflow-hidden" style="height: 1.1em; line-height: 1.1;">
+												<span class="step-section__digit inline-block overflow-hidden h-[1.1em] leading-[1.1]">
 													<span class="step-section__digit-track flex flex-col">
-														<span class="block" style="height: 1.1em; line-height: 1.1;"><?php echo esc_html( $d ); ?></span>
-														<span class="block" style="height: 1.1em; line-height: 1.1;"><?php echo esc_html( $d ); ?></span>
+														<span class="block h-[1.1em] leading-[1.1]"><?php echo esc_html( $d ); ?></span>
+														<span class="block h-[1.1em] leading-[1.1]"><?php echo esc_html( $d ); ?></span>
 													</span>
 												</span>
 											<?php endforeach; ?>
@@ -129,7 +128,7 @@ $steps   = $b->field( 'steps', [] );
 
 								<!-- Step title -->
 								<div class="flex flex-1 items-center">
-									<h6 class="step-section__card-text text-display-xs font-semibold text-forest <?php echo 0 !== $i ? 'opacity-25' : ''; ?>">
+									<h6 class="step-section__card-text <?php echo 0 !== $i ? 'opacity-25' : ''; ?>">
 										<?php echo esc_html( $step_title ); ?>
 									</h6>
 								</div>

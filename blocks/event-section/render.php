@@ -151,10 +151,10 @@ $cta_links      = $b->field( 'cta_links', [] );
 
 	<!-- Decorative trees (mobile) -->
 	<div class="flex items-end justify-end gap-6 px-4 pb-6 text-forest-5 lg:hidden" aria-hidden="true" data-stagger="true" data-tree-grow-group>
-		<div class="h-[90px] w-[62px]" data-tree-grow="round">
+		<div class="h-[90px] w-auto" data-tree-grow="round">
 			<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-round.svg'; ?>
 		</div>
-		<div class="h-[137px] w-[42px]" data-tree-grow="simple" data-tree-delay="0.2">
+		<div class="h-[137px] w-auto" data-tree-grow="simple" data-tree-delay="0.2">
 			<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-simple.svg'; ?>
 		</div>
 	</div>
@@ -183,7 +183,7 @@ $cta_links      = $b->field( 'cta_links', [] );
 					<?php if ( $cta_heading || ! empty( $cta_link['url'] ) ) : ?>
 						<div class="flex flex-col gap-4">
 							<?php if ( $cta_heading ) : ?>
-								<h6 class="text-display-xs font-semibold text-[#fff]">
+								<h6 class="text-[#fff]">
 									<?php echo esc_html( $cta_heading ); ?>
 								</h6>
 							<?php endif; ?>

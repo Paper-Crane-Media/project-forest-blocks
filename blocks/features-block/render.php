@@ -105,7 +105,7 @@ $features        = $b->field( 'features', [] );
 							<div class="flex flex-1 flex-col gap-6">
 								<div class="flex flex-col gap-4 text-[#fff]">
 									<?php if ( $feat_heading ) : ?>
-										<h6 class="text-display-xs">
+										<h6>
 											<?php echo esc_html( $feat_heading ); ?>
 										</h6>
 									<?php endif; ?>

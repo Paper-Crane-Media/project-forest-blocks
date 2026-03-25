@@ -62,7 +62,7 @@ $cards = $b->field( 'cards', [] );
 
 				<!-- Testimonial Card -->
 				<?php $sticky_pt = 8 + ( $index * 2 ); ?>
-				<div class="lg:sticky lg:top-0" style="z-index: <?php echo esc_attr( 1 + $index ); ?>; padding-top: <?php echo esc_attr( $sticky_pt ); ?>rem;">
+				<div class="testimonial-stack__card lg:sticky lg:top-0" style="z-index: <?php echo esc_attr( 1 + $index ); ?>; padding-top: <?php echo esc_attr( $sticky_pt ); ?>rem;">
 					<div class="relative bg-white border border-[lightgrey] lg:border-b lg:border-forest py-6 px-4 rounded-tl-[24px] rounded-tr-[24px] lg:rounded-tl-container-lg lg:rounded-tr-container-lg max-w-[1340px] mx-auto lg:px-10 lg:pb-16 lg:pt-10">
 
 						<!-- Desktop: flex row, Mobile: flex col -->
@@ -144,7 +144,7 @@ $cards = $b->field( 'cards', [] );
 
 											<!-- Author Attribution -->
 											<div class="flex flex-col gap-1 text-center">
-												<h6 class="text-display-xs font-semibold text-[#fff]">
+												<h6 class="text-[#fff]">
 													<?php echo esc_html( $author ); ?>
 												</h6>
 												<?php if ( $author_source ) : ?>
