@@ -81,7 +81,7 @@ $geo_base = FOREST_BLOCKS_URL . 'assets/images/';
 					<?php gravity_form( $form_id, false, false, false, null, true ); ?>
 				<?php elseif ( $b->is_preview() ) : ?>
 					<div class="flex flex-col gap-6 p-4">
-						<p class="font-body text-body-md text-grey-40">
+						<p class="text-body-md text-grey-40">
 							<?php if ( ! function_exists( 'gravity_form' ) ) : ?>
 								Gravity Forms plugin is not active. Please install and activate it.
 							<?php elseif ( ! $form_id ) : ?>
