@@ -23,12 +23,12 @@ $images      = $b->field( 'images', [] );
 
 <?php $b->open_tag( 'metrics-gallery' ); ?>
 
-	<div class="bg-[#fff] py-10 lg:py-20">
+	<div class="bg-[#fff] fb-section-lg">
 
 		<?php if ( $eyebrow || $heading || $subheading ) : ?>
 
 			<!-- Header Section -->
-			<div class="mx-auto w-[94%] max-w-container pb-10">
+			<div class="fb-container pb-10">
 
 				<!-- Header Groups -->
 				<div class="flex flex-col gap-4">
@@ -60,7 +60,7 @@ $images      = $b->field( 'images', [] );
 		<?php if ( ! empty( $metrics ) || ! empty( $images ) ) : ?>
 
 			<!-- Main Content: Metrics + Gallery -->
-			<div class="mx-auto w-[94%] max-w-container">
+			<div class="fb-container">
 
 				<div class="flex flex-col lg:flex-row lg:gap-10 lg:items-start">
 

@@ -36,7 +36,7 @@ $steps   = $b->field( 'steps', [] );
 	</div>
 	<!-- Main content area -->
 	<div class="bg-air -mt-[3px] z-10 px-6 pb-10 pt-6 lg:px-10 lg:pb-10">
-		<div class="mx-auto max-w-[1280px]">
+		<div class="fb-container">
 
 			<!-- Two-column layout -->
 			<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-10">

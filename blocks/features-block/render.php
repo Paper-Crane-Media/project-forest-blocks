@@ -24,8 +24,8 @@ $features        = $b->field( 'features', [] );
 ?>
 <?php $b->open_tag( 'features-block' ); ?>
 
-<div class="bg-forest-80 py-10 lg:py-16">
-	<div class="mx-auto max-w-[1280px] px-6 lg:px-10">
+<div class="bg-forest-80 fb-section-sm">
+	<div class="fb-container">
 
 		<!-- Header: two-column layout, bottom-aligned -->
 		<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-10">
@@ -34,10 +34,8 @@ $features        = $b->field( 'features', [] );
 			<div class="flex flex-1 flex-col gap-4 lg:pb-10">
 				<div class="flex flex-col gap-3 lg:max-w-[768px]">
 					<?php if ( $eyebrow ) : ?>
-						<div class="inline-flex self-start rounded-full bg-forest px-4 py-2">
-							<span class="font-body text-eyebrow-md font-semibold text-forest-5">
-								<?php echo esc_html( $eyebrow ); ?>
-							</span>
+						<div class="inline-flex self-start">
+							<?php echo fb_eyebrow( $eyebrow, 'text-eyebrow-md', 'bg-forest' ); ?>
 						</div>
 					<?php endif; ?>
 
@@ -105,7 +103,7 @@ $features        = $b->field( 'features', [] );
 							<div class="flex flex-1 flex-col gap-6">
 								<div class="flex flex-col gap-4 text-[#fff]">
 									<?php if ( $feat_heading ) : ?>
-										<h6>
+										<h6 class="text-[#fff]">
 											<?php echo esc_html( $feat_heading ); ?>
 										</h6>
 									<?php endif; ?>

@@ -63,7 +63,7 @@ $cards = $b->field( 'cards', [] );
 				<!-- Testimonial Card -->
 				<?php $sticky_pt = 8 + ( $index * 2 ); ?>
 				<div class="testimonial-stack__card lg:sticky lg:top-0" style="z-index: <?php echo esc_attr( 1 + $index ); ?>; padding-top: <?php echo esc_attr( $sticky_pt ); ?>rem;">
-					<div class="relative bg-white border border-[lightgrey] lg:border-b lg:border-forest py-6 px-4 rounded-tl-[24px] rounded-tr-[24px] lg:rounded-tl-container-lg lg:rounded-tr-container-lg max-w-[1340px] mx-auto lg:px-10 lg:pb-16 lg:pt-10">
+					<div class="relative bg-white border border-grey-20 lg:border-b lg:border-forest py-6 px-4 rounded-tl-[24px] rounded-tr-[24px] lg:rounded-tl-container-lg lg:rounded-tr-container-lg max-w-[1340px] mx-auto lg:px-10 lg:pb-16 lg:pt-10">
 
 						<!-- Desktop: flex row, Mobile: flex col -->
 						<div class="flex flex-col lg:flex-row lg:gap-10 lg:items-center" data-stagger="true">
@@ -124,7 +124,7 @@ $cards = $b->field( 'cards', [] );
 											<div class="absolute inset-0 rounded-full <?php echo esc_attr( $color_classes[ $color ] ); ?>"></div>
 											<div
 												class="absolute inset-0 rounded-full opacity-[0.16]"
-												style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: 86px 90px;"
+												style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: var(--fb-pattern-size);"
 												aria-hidden="true"
 											></div>
 										</div>

@@ -33,13 +33,13 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 		<div class="absolute inset-0 bg-forest"></div>
 		<div
 			class="absolute inset-0 mix-blend-overlay opacity-[0.16]"
-			style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: 86px 90px;"
+			style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: var(--fb-pattern-size);"
 		></div>
 	</div>
 
 	<!-- Card section -->
 	<div class="relative pt-10 lg:pt-20">
-		<div class="mx-auto w-[94%] max-w-container">
+		<div class="fb-container">
 
 			<!-- Outer card frame — bg image peeks through top + sides -->
 			<div class="relative overflow-hidden rounded-t-container-lg shadow-card-elevated">
@@ -128,26 +128,21 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 	</div>
 
 	<!-- Geo-banner wave parallax layers — overlaps bottom of video -->
-	<div class="video-block__geo pointer-events-none relative w-full" aria-hidden="true"
-		style="height: clamp(60px, 8vw, 120px);">
+	<div class="video-block__geo pointer-events-none relative w-full h-[clamp(60px,8vw,120px)]" aria-hidden="true">
 		<!-- Fire — furthest back, slowest -->
-		<div class="absolute inset-x-0 bottom-0 text-fire" data-parallax-speed="0.03"
-			style="height: 200%;">
+		<div class="absolute inset-x-0 bottom-0 text-fire h-[200%]" data-parallax-speed="0.03">
 			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-fire.svg'; ?>
 		</div>
 		<!-- Fire-40 -->
-		<div class="absolute inset-x-0 bottom-0 text-fire-40" data-parallax-speed="0.06"
-			style="height: 200%;">
+		<div class="absolute inset-x-0 bottom-0 text-fire-40 h-[200%]" data-parallax-speed="0.06">
 			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-fire-40.svg'; ?>
 		</div>
 		<!-- Fire-20 -->
-		<div class="absolute inset-x-0 bottom-0 text-fire-20" data-parallax-speed="0.09"
-			style="height: 200%;">
+		<div class="absolute inset-x-0 bottom-0 text-fire-20 h-[200%]" data-parallax-speed="0.09">
 			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-fire-20.svg'; ?>
 		</div>
 		<!-- Air — closest to viewer, fastest -->
-		<div class="absolute inset-x-0 bottom-0 text-air" data-parallax-speed="0.12"
-			style="height: 200%;">
+		<div class="absolute inset-x-0 bottom-0 text-air h-[200%]" data-parallax-speed="0.12">
 			<?php include FOREST_BLOCKS_PATH . 'assets/images/geo-wave-air.svg'; ?>
 		</div>
 	</div>

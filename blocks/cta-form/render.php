@@ -21,7 +21,7 @@ $geo_base = FOREST_BLOCKS_URL . 'assets/images/';
 ?>
 <?php $b->open_tag( 'cta-form' ); ?>
 
-<div class="relative overflow-clip bg-forest py-10 lg:py-20">
+<div class="relative overflow-clip bg-forest fb-section-lg">
 
 	<!-- ── Geo-wave banner (parallax) ──────────────────────────────────── -->
 	<div class="
@@ -63,7 +63,7 @@ $geo_base = FOREST_BLOCKS_URL . 'assets/images/';
 	</div>
 
 	<!-- ── Content ─────────────────────────────────────────────────────── -->
-	<div class="relative pt-24 lg:pt-0 z-10 mx-auto w-[94%] max-w-container">
+	<div class="relative pt-24 lg:pt-0 z-10 fb-container">
 		<div class="flex flex-col gap-6 overflow-hidden rounded-container-lg p-6 lg:flex-row lg:items-center lg:p-8">
 
 			<!-- Left: heading -->

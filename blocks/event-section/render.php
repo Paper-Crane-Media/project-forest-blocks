@@ -29,7 +29,7 @@ $cta_links      = $b->field( 'cta_links', [] );
 
 <!-- Zone 1: Dark forest hero -->
 <div class="bg-forest relative overflow-hidden">
-	<div class="mx-auto max-w-[1280px] px-4 py-6 lg:px-10 lg:pb-12 lg:pt-10">
+	<div class="fb-container py-6 lg:pb-12 lg:pt-10">
 		<div class="flex flex-col gap-6 lg:flex-row lg:items-start">
 
 			<!-- Left column: text + features -->
@@ -173,7 +173,7 @@ $cta_links      = $b->field( 'cta_links', [] );
 <!-- Zone 2: Fire CTA bar -->
 <?php if ( ! empty( $cta_links ) ) : ?>
 	<div class="bg-fire px-4 py-4 lg:px-10 lg:py-6">
-		<div class="mx-auto max-w-[1280px] rounded-container-md bg-fire-60 p-6">
+		<div class="fb-container rounded-container-md bg-fire-60 p-6">
 			<div class="flex flex-col gap-6">
 				<?php foreach ( $cta_links as $cta ) : ?>
 					<?php

@@ -27,7 +27,7 @@ $silhouette_url = FOREST_BLOCKS_URL . 'assets/images/forest-silhouette.svg';
 <div class="relative overflow-hidden">
 
 	<!-- ── Heading area ─────────────────────────────────────────────── -->
-	<div class="relative z-10 mx-auto max-w-[1280px] px-6 pt-16 lg:px-10">
+	<div class="relative z-10 fb-container pt-16">
 		<?php if ( $heading ) : ?>
 			<div class="max-w-[980px] pb-10">
 				<h2 class="font-display">
@@ -50,7 +50,7 @@ $silhouette_url = FOREST_BLOCKS_URL . 'assets/images/forest-silhouette.svg';
 
 	<!-- ── Air background section ───────────────────────────────────── -->
 	<div class="bg-air">
-		<div class="relative mx-auto max-w-[1280px] px-6 pb-10 lg:px-10">
+		<div class="relative fb-container pb-10">
 
 			<!-- Decorative vector trees (positioned above the card) -->
 			<div class="pointer-events-none relative h-0 text-forest" aria-hidden="true" data-tree-grow-group>

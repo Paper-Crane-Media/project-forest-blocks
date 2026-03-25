@@ -89,6 +89,9 @@
 	--fb-shadow-card: 0px 2px 40px 0px rgba(0, 0, 0, 0.24);
 	--fb-shadow-card-elevated: 0px 2px 40px 24px rgba(0, 0, 0, 0.24);
 
+	/* ── Pattern overlay ─────────────────────────────────────────── */
+	--fb-pattern-size: 86px 90px;
+
 	/* ── Base text color ──────────────────────────────────────────────── */
 	color: var(--fb-color-text-primary);
 }
@@ -267,6 +270,58 @@
 .fb img {
 	max-width: 100%;
 	height: auto;
+}
+
+/* ==========================================================================
+   Container — centred content wrapper with 3 % side gutters.
+   Standard: 1260 px max.  Wide modifier: 1280 px with explicit padding.
+   ========================================================================== */
+
+.fb-container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 94%;
+	max-width: 1260px;
+}
+
+.fb-container--padded {
+	width: 100%;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+	.fb-container--padded {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+}
+
+/* ==========================================================================
+   Section padding — consistent vertical rhythm.
+   Small: 40 / 64 px.   Large: 40 / 80 px.
+   ========================================================================== */
+
+.fb-section-sm {
+	padding-top: 2.5rem;
+	padding-bottom: 2.5rem;
+}
+
+.fb-section-lg {
+	padding-top: 2.5rem;
+	padding-bottom: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+	.fb-section-sm {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.fb-section-lg {
+		padding-top: 5rem;
+		padding-bottom: 5rem;
+	}
 }
 
 /* ==========================================================================

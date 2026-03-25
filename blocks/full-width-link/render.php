@@ -14,7 +14,7 @@ $link = $b->field( 'link' );
 ?>
 <?php $b->open_tag( 'full-width-link' ); ?>
 <div class="bg-fire py-10">
-	<div class="mx-auto w-[94%] max-w-container">
+	<div class="fb-container">
 	<?php if ( ! empty( $link['url'] ) ) : ?>
 		<?php echo fb_text_link( $link ); ?>
 	<?php else : ?>

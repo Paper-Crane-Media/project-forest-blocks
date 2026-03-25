@@ -35,13 +35,13 @@ $image      = $b->field( 'image' );
 			<div class="absolute inset-0 bg-forest"></div>
 			<div
 				class="absolute inset-0 mix-blend-overlay opacity-[0.16]"
-				style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: 86px 90px;"
+				style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: var(--fb-pattern-size);"
 			></div>
 		</div>
 
 		<!-- Card -->
-		<div class="relative px-6 py-10 lg:px-8 lg:py-16">
-			<div class="mx-auto w-[94%] max-w-container overflow-hidden rounded-container-md bg-forest shadow-card-elevated">
+		<div class="relative px-6 fb-section-sm lg:px-8">
+			<div class="fb-container overflow-hidden rounded-container-md bg-forest shadow-card-elevated">
 				<div class="flex flex-col lg:flex-row lg:items-stretch">
 
 					<!-- Image (left on desktop, top on mobile) -->
@@ -88,7 +88,7 @@ $image      = $b->field( 'image' );
 
 <?php else : ?>
 
-	<div class="relative bg-[#fff] py-10 lg:py-16">
+	<div class="relative bg-[#fff] fb-section-sm">
 
 		<!-- Decorative trees (bottom-left, desktop only) -->
 		<div class="pointer-events-none absolute bottom-0 left-20 hidden items-end gap-7 text-forest lg:flex" aria-hidden="true" data-tree-grow-group>
@@ -103,7 +103,7 @@ $image      = $b->field( 'image' );
 			</div>
 		</div>
 
-		<div class="mx-auto w-[94%] max-w-container">
+		<div class="fb-container">
 			<div class="flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
 
 				<!-- Content -->
