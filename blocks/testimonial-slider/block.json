@@ -1,0 +1,17 @@
+{
+	"name": "acf/testimonial-slider",
+	"title": "Testimonial Slider",
+	"description": "Horizontal testimonial carousel with avatar, attribution, and quote. Air background with decorative trees.",
+	"category": "forest-blocks",
+	"icon": "format-quote",
+	"keywords": [ "testimonial", "slider", "quote", "carousel" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/testimonial-slider/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

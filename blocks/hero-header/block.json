@@ -1,7 +1,7 @@
 {
 	"name": "acf/hero-header",
 	"title": "Hero Header",
-	"description": "Full-width hero with background image, display heading, feature cards, and CTA.",
+	"description": "Full-width hero with background image, display heading, feature cards, and CTA. Secondary variant: white bg, content left / image right.",
 	"category": "forest-blocks",
 	"icon": "cover-image",
 	"keywords": [ "hero", "header", "banner" ],

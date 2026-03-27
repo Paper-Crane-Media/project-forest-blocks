@@ -15,17 +15,76 @@
 
 $b = new FB_Block( $block, $is_preview, $post_id );
 
-$variant    = $b->field( 'variant', 'default' );
-$eyebrow    = $b->field( 'eyebrow', '' );
-$heading    = $b->field( 'heading', 'Think about the last time you sat under the shade of a tree.' );
-$subheading = $b->field( 'subheading', '' );
-$body       = $b->field( 'body', '' );
-$cta        = $b->field( 'cta' );
-$image      = $b->field( 'image' );
+$variant            = $b->field( 'variant', 'default' );
+$container_position = $b->field( 'container_position', 'bottom_left' );
+$eyebrow            = $b->field( 'eyebrow', '' );
+$heading            = $b->field( 'heading', 'Think about the last time you sat under the shade of a tree.' );
+$subheading         = $b->field( 'subheading', '' );
+$body               = $b->field( 'body', '' );
+$cta                = $b->field( 'cta' );
+$image              = $b->field( 'image' );
 ?>
 <?php $b->open_tag( 'splitter-image' ); ?>
 
-<?php if ( 'cta_card' === $variant ) : ?>
+<?php if ( 'full_background' === $variant ) : ?>
+
+	<?php $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png'; ?>
+	<div class="relative px-6 py-8 lg:px-8">
+
+		<!-- Forest bg + repeating pattern -->
+		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+			<div class="absolute inset-0 bg-forest"></div>
+			<div
+				class="absolute inset-0 mix-blend-overlay opacity-[0.16]"
+				style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: var(--fb-pattern-size);"
+			></div>
+		</div>
+
+		<!-- Image frame -->
+		<div class="relative mx-auto w-full rounded-container-lg overflow-hidden p-6">
+
+			<!-- Full-bleed background image -->
+			<?php if ( ! empty( $image['url'] ) ) : ?>
+				<img
+					src="<?php echo esc_url( $image['url'] ); ?>"
+					alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>"
+					class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+				/>
+			<?php endif; ?>
+
+			<!-- Content card -->
+			<?php $card_align = 'bottom_right' === $container_position ? 'items-end' : 'items-start'; ?>
+			<div class="relative mt-auto flex flex-col justify-end <?php echo esc_attr( $card_align ); ?> h-full">
+				<div class="w-full lg:max-w-[736px] rounded-container-lg bg-[rgba(255,255,255,0.95)] pl-6 pr-6 pt-6 lg:pl-10 lg:pr-8 lg:pt-10">
+					<div data-stagger="true" class="flex flex-col items-start gap-4 max-w-[936px] pb-6 lg:pb-10">
+
+						<?php if ( $eyebrow ) : ?>
+							<?php echo fb_eyebrow( $eyebrow ); ?>
+						<?php endif; ?>
+
+						<?php if ( $heading ) : ?>
+							<h4 class="max-w-[768px]">
+								<?php echo esc_html( $heading ); ?>
+							</h4>
+						<?php endif; ?>
+
+						<?php if ( $body ) : ?>
+							<div class="wysiwyg">
+								<?php echo wp_kses_post( $body ); ?>
+							</div>
+						<?php endif; ?>
+
+						<?php echo fb_button( $cta, 'Learn More', 'mt-2' ); ?>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+<?php elseif ( 'cta_card' === $variant ) : ?>
 
 	<?php $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png'; ?>
 	<div class="relative">

@@ -21,11 +21,33 @@ acf_add_local_field_group( [
 			'name'          => 'variant',
 			'type'          => 'select',
 			'choices'       => [
-				'default'  => 'Default',
-				'cta_card' => 'CTA Card',
+				'default'         => 'Default',
+				'cta_card'        => 'CTA Card',
+				'full_background' => 'Full Background',
 			],
 			'default_value' => 'default',
-			'instructions'  => 'Default: white background, text left / image right. CTA Card: forest background with pattern, image left / text right inside a card.',
+			'instructions'  => 'Default: white background, text left / image right. CTA Card: forest background with pattern, image left / text right inside a card. Full Background: forest background with full-bleed image and overlaid content card.',
+		],
+		[
+			'key'               => 'field_fb_splitter_image_container_position',
+			'label'             => 'Container Position',
+			'name'              => 'container_position',
+			'type'              => 'select',
+			'choices'           => [
+				'bottom_left'  => 'Bottom Left',
+				'bottom_right' => 'Bottom Right',
+			],
+			'default_value'     => 'bottom_left',
+			'instructions'      => 'Position of the content card overlay on the image.',
+			'conditional_logic' => [
+				[
+					[
+						'field'    => 'field_fb_splitter_image_variant',
+						'operator' => '==',
+						'value'    => 'full_background',
+					],
+				],
+			],
 		],
 		[
 			'key'         => 'field_fb_splitter_image_eyebrow',

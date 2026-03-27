@@ -1,0 +1,17 @@
+{
+	"name": "acf/partners-section",
+	"title": "Partners Section",
+	"description": "Logo grid on an air background with heading. Large logos (4-col) or small logos (8-col) variant.",
+	"category": "forest-blocks",
+	"icon": "groups",
+	"keywords": [ "partners", "logos", "sponsors", "proof" ],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blocks/partners-section/render.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"jsx": true
+	}
+}

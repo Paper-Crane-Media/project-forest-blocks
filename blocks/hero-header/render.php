@@ -11,6 +11,7 @@
 
 $b = new FB_Block( $block, $is_preview, $post_id );
 
+$variant    = $b->field( 'variant', 'default' );
 $heading    = $b->field( 'heading', 'Connect your event to nature.' );
 $subheading = $b->field( 'subheading', 'Offset your event\'s footprint by dazzling your attendees with a tree planting event.' );
 $cta        = $b->field( 'cta' );
@@ -18,6 +19,69 @@ $cards      = $b->field( 'feature_cards', [] );
 $bg_image   = $b->field( 'background_image' );
 ?>
 <?php $b->open_tag( 'hero-header' ); ?>
+
+<?php if ( 'secondary' === $variant ) : ?>
+
+	<?php
+	$eyebrow              = $b->field( 'eyebrow', '' );
+	$secondary_subheading = $b->field( 'secondary_subheading', '' );
+	$body                 = $b->field( 'body', '' );
+	?>
+
+	<div class="bg-[#fff]">
+		<div class="flex flex-col lg:flex-row lg:items-center">
+
+			<!-- Content -->
+			<div class="flex-1 px-4 py-10 lg:py-0 lg:px-8 lg:max-w-[1280px]">
+				<div class="lg:pl-8 lg:pr-8">
+					<div data-stagger="true" class="flex flex-col items-start gap-4 max-w-[768px]">
+
+						<?php if ( $eyebrow ) : ?>
+							<?php echo fb_eyebrow( $eyebrow, 'text-eyebrow-lg' ); ?>
+						<?php endif; ?>
+
+						<?php if ( $heading ) : ?>
+							<h3><?php echo esc_html( $heading ); ?></h3>
+						<?php endif; ?>
+
+						<?php if ( $secondary_subheading ) : ?>
+							<div class="wysiwyg text-display-sm">
+								<?php echo wp_kses_post( $secondary_subheading ); ?>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( $body ) : ?>
+							<p><?php echo esc_html( $body ); ?></p>
+						<?php endif; ?>
+
+					</div>
+
+					<!-- Scroll indicator -->
+					<div class="pt-10 pb-10">
+						<svg class="h-6 w-6 text-fire" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M7 7l5 5 5-5M7 13l5 5 5-5"/>
+						</svg>
+					</div>
+				</div>
+			</div>
+
+			<!-- Image -->
+			<?php if ( ! empty( $bg_image['url'] ) ) : ?>
+				<div class="shrink-0 p-4 lg:p-6 lg:w-[636px] lg:h-[636px]">
+					<div class="relative w-full h-full overflow-hidden rounded-container-md aspect-square lg:aspect-auto">
+						<img
+							src="<?php echo esc_url( $bg_image['url'] ); ?>"
+							alt="<?php echo esc_attr( $bg_image['alt'] ?? '' ); ?>"
+							class="absolute inset-0 h-full w-full object-cover"
+						/>
+					</div>
+				</div>
+			<?php endif; ?>
+
+		</div>
+	</div>
+
+<?php else : ?>
 
 	<div class="relative bg-[#fff]">
 
@@ -95,5 +159,7 @@ $bg_image   = $b->field( 'background_image' );
 		</div>
 
 	</div>
+
+<?php endif; ?>
 
 <?php $b->close_tag(); ?>
