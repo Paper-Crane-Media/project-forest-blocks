@@ -119,7 +119,7 @@ $bg_image   = $b->field( 'background_image' );
 								<!-- Decorative tree icons attached to top card -->
 								<div class="flex items-end justify-end px-6 text-forest lg:text-white lg:absolute lg:-top-16 lg:right-0" aria-hidden="true" data-tree-grow-group>
 									<div class="mr-1 h-[40px] w-auto lg:h-[50px]" data-tree-grow="round"><?php include FOREST_BLOCKS_PATH . 'assets/images/tree-round.svg'; ?></div>
-									<div class="h-[62px] w-auto lg:h-[74px]" data-tree-grow="pine" data-tree-delay="0.2"><?php include FOREST_BLOCKS_PATH . 'assets/images/tree-pine.svg'; ?></div>
+									<div class="fb-tree-semibold h-[62px] w-auto lg:h-[74px]" data-tree-grow="pine" data-tree-delay="0.2"><?php include FOREST_BLOCKS_PATH . 'assets/images/tree-pine.svg'; ?></div>
 								</div>
 							<?php endif; ?>
 
