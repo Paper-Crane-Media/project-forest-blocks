@@ -171,7 +171,7 @@ $cards = $b->field( 'cards', [] );
 							<div class="h-[56px] lg:h-[124px]" data-tree-grow="simple">
 								<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-simple.svg'; ?>
 							</div>
-							<div class="h-[54px] lg:h-[126px]" data-tree-grow="triangle" data-tree-delay="0.5">
+							<div class="fb-tree-bold--triangle h-[54px] lg:h-[126px]" data-tree-grow="triangle" data-tree-delay="0.5">
 								<?php include FOREST_BLOCKS_PATH . 'assets/images/tree-triangle.svg'; ?>
 							</div>
 						</div>

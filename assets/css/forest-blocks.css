@@ -325,6 +325,19 @@
 }
 
 /* ==========================================================================
+   Tree SVG — bold variant (doubles stroke-width).
+   Usage: add class "fb-tree-bold" to the tree wrapper div.
+   ========================================================================== */
+
+.fb-tree-bold svg path {
+	stroke-width: 8;
+}
+
+.fb-tree-bold--triangle svg path {
+	stroke-width: 6;
+}
+
+/* ==========================================================================
    Hero Header — card highlight cycling (desktop only)
    ========================================================================== */
 
