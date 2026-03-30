@@ -346,6 +346,13 @@
 	stroke-width: 6;
 }
 
+/* Hide tree SVG paths on load so stroke-linecap dots don't flash
+   before JS sets up the stroke-dashoffset animation. */
+[data-tree-grow] svg path {
+	stroke-dasharray: 0;
+	stroke-dashoffset: 9999;
+}
+
 /* ==========================================================================
    Hero Header — card highlight cycling (desktop only)
    ========================================================================== */

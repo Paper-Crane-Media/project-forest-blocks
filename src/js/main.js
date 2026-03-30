@@ -170,6 +170,7 @@ function initStepSectionScroll() {
 				trigger: card,
 				start: 'top center',
 				end: 'bottom center',
+				invalidateOnRefresh: true,
 				onToggle: (self) => {
 					if (self.isActive) {
 						setActiveStep(card.dataset.stepIndex);
@@ -294,6 +295,15 @@ function initStaggerAnimations() {
 		const children = container.children;
 		const isEarly = container.hasAttribute('data-stagger-early');
 
+		// If the element is already above the viewport (user loaded mid-page),
+		// show it immediately — don't hide then animate something already passed.
+		const rect = container.getBoundingClientRect();
+		if (rect.bottom < 0) {
+			return; // Already scrolled past — leave visible.
+		}
+
+		gsap.set(children, { opacity: 0, y: 50 });
+
 		const tl = gsap.timeline({
 			delay,
 			scrollTrigger: {
@@ -301,10 +311,9 @@ function initStaggerAnimations() {
 				start: isEarly ? 'top bottom' : 'top bottom-=100',
 				toggleActions: 'play none none none',
 				once: true,
+				invalidateOnRefresh: true,
 			},
 		});
-
-		gsap.set(children, { opacity: 0, y: 50 });
 
 		tl.to(children, {
 			opacity: 1,
@@ -333,6 +342,12 @@ function initMetricsCountUp() {
 			return rounded.toLocaleString('en-US');
 		};
 
+		// Already scrolled past — show final value immediately.
+		if (el.getBoundingClientRect().bottom < 0) {
+			el.textContent = prefix + formatNumber(endValue) + suffix;
+			return;
+		}
+
 		const obj = { val: 0 };
 
 		gsap.to(obj, {
@@ -344,6 +359,7 @@ function initMetricsCountUp() {
 				start: 'top bottom-=100',
 				toggleActions: 'play none none none',
 				once: true,
+				invalidateOnRefresh: true,
 			},
 			onUpdate() {
 				el.textContent = prefix + formatNumber(obj.val) + suffix;
@@ -378,6 +394,16 @@ function initTreeGrowth() {
 		const paths = svg.querySelectorAll('path');
 		const type = wrapper.dataset.treeGrow;
 		const delay = parseFloat(wrapper.dataset.treeDelay) || 0;
+
+		// Already scrolled past — show tree fully drawn.
+		const triggerEl = wrapper.closest('[data-tree-grow-group]') || wrapper;
+		if (triggerEl.getBoundingClientRect().bottom < 0) {
+			paths.forEach((p) => {
+				const len = p.getTotalLength();
+				gsap.set(p, { strokeDasharray: len + 2, strokeDashoffset: 0 });
+			});
+			return;
+		}
 
 		// Hide all paths up front (pine trunk is reversed — draws bottom → top).
 		if (type === 'pine' && paths.length >= 9) {
@@ -460,10 +486,23 @@ function initGSAP() {
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	initStaggerAnimations();
-	initStepSectionScroll();
-	initMetricsCountUp();
-	initTreeGrowth();
+	// Defer GSAP init by one frame so the browser has a
+	// fully-settled layout (images, fonts, lazy elements).
+	// This prevents ScrollTrigger from calculating trigger
+	// positions against a partially-rendered page when the
+	// user loads mid-scroll.
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			initStaggerAnimations();
+			initStepSectionScroll();
+			initMetricsCountUp();
+			initTreeGrowth();
+
+			// Recalculate all trigger positions now that
+			// every animation has been registered.
+			ScrollTrigger.refresh();
+		});
+	});
 
 	// Keep ScrollTrigger positions accurate after layout shifts.
 	let resizeTimer;
