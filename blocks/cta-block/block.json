@@ -1,0 +1,17 @@
+{
+  "name": "acf/cta-block",
+  "title": "CTA Block",
+  "description": "Forest-themed call-to-action card with image, title, content, and button over a patterned background.",
+  "category": "forest-blocks",
+  "icon": "megaphone",
+  "keywords": ["cta", "call to action", "card", "button"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/cta-block/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}

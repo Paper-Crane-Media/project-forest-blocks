@@ -1,0 +1,18 @@
+{
+  "name": "acf/tree-vector-divider",
+  "title": "Tree Vector Divider",
+  "description": "Decorative forest-colored divider bar with animated SVG trees.",
+  "category": "forest-blocks",
+  "icon": "minus",
+  "keywords": ["tree", "divider", "separator", "decorative"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/tree-vector-divider/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": false,
+    "multiple": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "acf/schedule-section",
+  "title": "Schedule Section",
+  "description": "Two-column schedule layout with icon, agenda, and description per column.",
+  "category": "forest-blocks",
+  "icon": "calendar-alt",
+  "keywords": ["schedule", "agenda", "event", "calendar", "columns"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/schedule-section/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}

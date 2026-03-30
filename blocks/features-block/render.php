@@ -14,15 +14,77 @@
 
 $b = new FB_Block( $block, $is_preview, $post_id );
 
-$eyebrow         = $b->field( 'eyebrow', '' );
+$variant         = $b->field( 'variant', 'default' );
 $heading         = $b->field( 'heading', '' );
+?>
+<?php $b->open_tag( 'features-block' ); ?>
+
+<?php if ( 'checkmarks' === $variant ) : ?>
+
+	<?php
+	$checkmarks_description = $b->field( 'checkmarks_description', '' );
+	$checkmarks             = $b->field( 'checkmarks', [] );
+	?>
+
+	<div class="bg-forest-80 fb-section-sm">
+		<div class="fb-container">
+			<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-10">
+				<?php if ( $heading ) : ?>
+					<div class="flex-1 w-full lg:pb-10">
+						<h4 class="text-[#fff] font-heading font-semibold">
+							<?php echo esc_html( $heading ); ?>
+						</h4>
+					</div>
+				<?php endif; ?>
+
+				<div class="w-full flex-1 lg:max-w-[40%]">
+					<div class="px-0 lg:px-4">
+
+						<?php if ( $checkmarks_description ) : ?>
+							<div class="pb-10">
+								<p class="text-display-xs font-semibold text-[#fff]">
+									<?php echo esc_html( $checkmarks_description ); ?>
+								</p>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( ! empty( $checkmarks ) ) : ?>
+							<div class="flex flex-col gap-6 lg:gap-8" data-stagger="true">
+								<?php foreach ( $checkmarks as $item ) : ?>
+									<?php $label = $item['label'] ?? ''; ?>
+									<?php if ( $label ) : ?>
+										<div class="flex items-center gap-6">
+											<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fire">
+												<div class="h-8 w-8 text-[#fff]">
+													<?php include FOREST_BLOCKS_PATH . 'assets/images/icon-check-verified.svg'; ?>
+												</div>
+											</div>
+											<p class="text-display-xs text-[#fff]">
+												<?php echo esc_html( $label ); ?>
+											</p>
+										</div>
+									<?php endif; ?>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<?php else : ?>
+
+<?php
+$eyebrow         = $b->field( 'eyebrow', '' );
 $subheading      = $b->field( 'subheading', '' );
 $body            = $b->field( 'body', '' );
 $cta_description = $b->field( 'cta_description', '' );
 $cta             = $b->field( 'cta' );
 $features        = $b->field( 'features', [] );
 ?>
-<?php $b->open_tag( 'features-block' ); ?>
 
 <div class="bg-forest-80 fb-section-sm">
 	<div class="fb-container">
@@ -127,5 +189,7 @@ $features        = $b->field( 'features', [] );
 
 	</div>
 </div>
+
+<?php endif; ?>
 
 <?php $b->close_tag(); ?>

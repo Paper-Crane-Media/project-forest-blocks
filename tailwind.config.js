@@ -88,6 +88,7 @@ export default {
 			},
 			maxWidth: {
 				container: '1260px',
+				'container-lg': '1376px',
 				content: '1024px',
 			},
 		},

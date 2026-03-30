@@ -1,0 +1,17 @@
+{
+  "name": "acf/media-section",
+  "title": "Media Section",
+  "description": "Full-width forest background with a large image or video thumbnail that opens in a Fancybox lightbox.",
+  "category": "forest-blocks",
+  "icon": "format-image",
+  "keywords": ["media", "image", "video", "lightbox", "fancybox"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/media-section/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}
