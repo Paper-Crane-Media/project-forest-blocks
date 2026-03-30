@@ -325,9 +325,18 @@
 }
 
 /* ==========================================================================
-   Tree SVG — bold variant (doubles stroke-width).
-   Usage: add class "fb-tree-bold" to the tree wrapper div.
+   Tree SVG — weight variants.
+   Semi-bold: 1.5× stroke.  Bold: 2× stroke.
+   Usage: add class to the tree wrapper div.
    ========================================================================== */
+
+.fb-tree-semibold svg path {
+	stroke-width: 6;
+}
+
+.fb-tree-semibold--triangle svg path {
+	stroke-width: 4.5;
+}
 
 .fb-tree-bold svg path {
 	stroke-width: 8;
