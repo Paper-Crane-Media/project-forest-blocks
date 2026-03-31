@@ -21,8 +21,9 @@ acf_add_local_field_group( [
 			'name'          => 'variant',
 			'type'          => 'select',
 			'choices'       => [
-				'default'   => 'Default',
-				'secondary' => 'Secondary',
+				'default'     => 'Default',
+				'secondary'   => 'Secondary',
+				'solid-green' => 'Solid Green',
 			],
 			'default_value' => 'default',
 			'instructions'  => 'Default: full-width background image with feature cards. Secondary: white background, content left / image right.',
@@ -104,6 +105,13 @@ acf_add_local_field_group( [
 						'field'    => 'field_fb_hero_header_variant',
 						'operator' => '==',
 						'value'    => 'default',
+					],
+				],
+				[
+					[
+						'field'    => 'field_fb_hero_header_variant',
+						'operator' => '==',
+						'value'    => 'solid-green',
 					],
 				],
 			],

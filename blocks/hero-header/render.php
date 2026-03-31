@@ -81,6 +81,52 @@ $bg_image   = $b->field( 'background_image' );
 		</div>
 	</div>
 
+<?php elseif ( 'solid-green' === $variant ) : ?>
+
+	<div class="bg-forest">
+		<div class="fb-container flex flex-col lg:flex-row lg:items-center">
+
+			<!-- Content -->
+			<div class="flex-1 px-4 py-10 lg:py-16 lg:pl-20 lg:pr-8">
+				<div class="flex flex-col gap-4">
+
+					<?php if ( $heading ) : ?>
+						<h3 class="text-white">
+							<?php echo esc_html( $heading ); ?>
+						</h3>
+					<?php endif; ?>
+
+					<?php if ( $subheading ) : ?>
+						<p class="text-display-sm text-white">
+							<?php echo esc_html( $subheading ); ?>
+						</p>
+					<?php endif; ?>
+
+					<?php if ( ! empty( $cta['url'] ) ) : ?>
+						<div class="pt-2">
+							<?php echo fb_button( $cta ); ?>
+						</div>
+					<?php endif; ?>
+
+				</div>
+			</div>
+
+			<!-- Image -->
+			<?php if ( ! empty( $bg_image['url'] ) ) : ?>
+				<div class="shrink-0 p-4 lg:p-6 lg:w-[636px] lg:h-[636px]">
+					<div class="relative w-full h-full overflow-hidden rounded-container-lg aspect-square lg:aspect-auto">
+						<img
+							src="<?php echo esc_url( $bg_image['url'] ); ?>"
+							alt="<?php echo esc_attr( $bg_image['alt'] ?? '' ); ?>"
+							class="absolute inset-0 h-full w-full object-cover"
+						/>
+					</div>
+				</div>
+			<?php endif; ?>
+
+		</div>
+	</div>
+
 <?php else : ?>
 
 	<div class="relative bg-[#fff]">

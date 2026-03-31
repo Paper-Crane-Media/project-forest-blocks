@@ -26,10 +26,10 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 	<!-- Forest background + repeating pattern -->
 	<div class="pointer-events-none absolute inset-0" aria-hidden="true">
 		<div class="absolute inset-0 bg-forest"></div>
-		<div
+		<!-- <div
 			class="absolute inset-0 mix-blend-overlay opacity-[0.16]"
 			style="background-image: url('<?php echo esc_url( $pattern_url ); ?>'); background-size: var(--fb-pattern-size);"
-		></div>
+		></div> -->
 	</div>
 
 	<div class="relative fb-container">
@@ -56,7 +56,7 @@ $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png';
 				<img
 					src="<?php echo esc_url( $image['url'] ); ?>"
 					alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>"
-					class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+					class="w-full h-auto max-h-[39.75rem] object-cover transition-transform duration-500 group-hover:scale-105"
 				/>
 			<?php endif; ?>
 
