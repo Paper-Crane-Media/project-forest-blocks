@@ -1,6 +1,6 @@
 // Forest Blocks — front-end JS entry point.
 import { Swiper } from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 
 /**
  * Hero Header — cycle the "active" highlight through feature cards.
@@ -36,6 +36,36 @@ function initFancybox() {
 	if (window.Fancybox) {
 		window.Fancybox.bind('[data-fancybox]');
 	}
+}
+
+/**
+ * Media Section — initialize Swiperjs slider for the gallery variant.
+ */
+function initMediaSectionSlider() {
+	document.querySelectorAll('.media-section__swiper').forEach((swiperEl) => {
+		const wrapper = swiperEl.parentElement;
+		const prevBtn = wrapper.querySelector('.media-section__prev-btn');
+		const nextBtn = wrapper.querySelector('.media-section__next-btn');
+		const paginationEl = swiperEl.querySelector('.media-section__pagination');
+
+		if (!prevBtn || !nextBtn) return;
+
+		new Swiper(swiperEl, {
+			modules: [Navigation, Pagination],
+			loop: true,
+			slidesPerView: 1,
+			navigation: {
+				prevEl: prevBtn,
+				nextEl: nextBtn,
+			},
+			pagination: {
+				el: paginationEl,
+				clickable: true,
+				bulletClass: 'media-section__dot',
+				bulletActiveClass: 'media-section__dot--active',
+			},
+		});
+	});
 }
 
 /**
@@ -330,7 +360,7 @@ function initStaggerAnimations() {
  * from 0 to the target value when the metrics section scrolls into view.
  */
 function initMetricsCountUp() {
-	document.querySelectorAll('.metrics-gallery__number').forEach((el) => {
+	document.querySelectorAll('.metrics-gallery__number, .figures-section__number').forEach((el) => {
 		const endValue = parseInt(el.dataset.countTo, 10) || 0;
 		const prefix = el.dataset.countPrefix || '';
 		const suffix = el.dataset.countSuffix || '';
@@ -470,13 +500,43 @@ function initTreeGrowth() {
 }
 
 /**
+ * Accordion Section — toggle panels with full WCAG 2.1 keyboard + ARIA support.
+ */
+function initAccordions() {
+	document.querySelectorAll('.accordion-section__trigger').forEach((trigger) => {
+		trigger.addEventListener('click', () => {
+			const expanded = trigger.getAttribute('aria-expanded') === 'true';
+			const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+			if (!panel) return;
+
+			trigger.setAttribute('aria-expanded', String(!expanded));
+
+			const iconPlus = trigger.querySelector('.accordion-section__icon-plus');
+			const iconMinus = trigger.querySelector('.accordion-section__icon-minus');
+
+			if (expanded) {
+				panel.hidden = true;
+				if (iconPlus) iconPlus.classList.remove('hidden');
+				if (iconMinus) iconMinus.classList.add('hidden');
+			} else {
+				panel.hidden = false;
+				if (iconPlus) iconPlus.classList.add('hidden');
+				if (iconMinus) iconMinus.classList.remove('hidden');
+			}
+		});
+	});
+}
+
+/**
  * Initialization — runs non-GSAP code on DOMContentLoaded and GSAP code on load,
  * with fallbacks if those events have already fired.
  */
 function initDOM() {
 	initHeroCardCycle();
 	initFancybox();
+	initMediaSectionSlider();
 	initMetricsGallerySlider();
+	initAccordions();
 	initCtaFormParallax();
 	initVideoBlockParallax();
 }

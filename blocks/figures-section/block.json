@@ -1,0 +1,17 @@
+{
+  "name": "acf/figures-section",
+  "title": "Figures Section",
+  "description": "Two animated figure cards alongside a forest content card with a centered CTA button.",
+  "category": "forest-blocks",
+  "icon": "chart-bar",
+  "keywords": ["figures", "metrics", "numbers", "stats", "count"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/figures-section/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}

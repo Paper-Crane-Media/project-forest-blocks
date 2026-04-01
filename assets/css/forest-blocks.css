@@ -403,6 +403,46 @@
    Metrics & Gallery — Swiperjs gallery with nav buttons
    ========================================================================== */
 
+.fb .media-section__prev-btn,
+.fb .media-section__next-btn {
+	transition: opacity 0.3s ease;
+	cursor: pointer;
+}
+
+.fb .media-section__prev-btn:disabled,
+.fb .media-section__next-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.fb .media-section__dot {
+	width: 0.625rem;
+	height: 0.625rem;
+	border-radius: 9999px;
+	background-color: var(--fb-color-fire-20);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.fb .media-section__dot--active {
+	background-color: var(--fb-color-fire);
+}
+
+/* ==========================================================================
+   Accordion Section
+   ========================================================================== */
+
+.fb .accordion-section__trigger {
+	cursor: pointer;
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+.fb .accordion-section__trigger:focus-visible .accordion-section__icon {
+	box-shadow: 0 0 0 0.25rem rgba(233, 84, 41, 0.15);
+}
+
 .fb .metrics-gallery__prev-btn,
 .fb .metrics-gallery__next-btn {
 	transition: opacity 0.3s ease;

@@ -24,6 +24,7 @@ acf_add_local_field_group( [
 				'default'         => 'Default',
 				'cta_card'        => 'CTA Card',
 				'full_background' => 'Full Background',
+				'image_grid'      => 'Image Grid',
 			],
 			'default_value' => 'default',
 			'instructions'  => 'Default: white background, text left / image right. CTA Card: forest background with pattern, image left / text right inside a card. Full Background: forest background with full-bleed image and overlaid content card.',
@@ -96,6 +97,36 @@ acf_add_local_field_group( [
 			'return_format' => 'array',
 			'preview_size'  => 'large',
 			'instructions'  => 'Recommended minimum 636×636. Will be displayed with rounded corners.',
+			'conditional_logic' => [
+				[
+					[
+						'field'    => 'field_fb_splitter_image_variant',
+						'operator' => '!=',
+						'value'    => 'image_grid',
+					],
+				],
+			],
+		],
+		[
+			'key'           => 'field_fb_splitter_image_gallery',
+			'label'         => 'Image Gallery',
+			'name'          => 'gallery',
+			'type'          => 'gallery',
+			'return_format' => 'array',
+			'preview_size'  => 'medium',
+			'library'       => 'all',
+			'min'           => 0,
+			'max'           => 4,
+			'instructions'  => 'Exactly 4 images for the masonry grid layout.',
+			'conditional_logic' => [
+				[
+					[
+						'field'    => 'field_fb_splitter_image_variant',
+						'operator' => '==',
+						'value'    => 'image_grid',
+					],
+				],
+			],
 		],
 	],
 	'location' => [

@@ -1,0 +1,17 @@
+{
+  "name": "acf/accordion-section",
+  "title": "Accordion Section",
+  "description": "Expandable accordion items with heading and rich content, on an air-colored background.",
+  "category": "forest-blocks",
+  "icon": "list-view",
+  "keywords": ["accordion", "faq", "toggle", "expandable"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/accordion-section/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}

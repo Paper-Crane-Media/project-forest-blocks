@@ -1,0 +1,17 @@
+{
+  "name": "acf/in-the-news-section",
+  "title": "In The News Section",
+  "description": "News section with Media (video lightbox cards) or Articles (linked article cards) variants.",
+  "category": "forest-blocks",
+  "icon": "media-text",
+  "keywords": ["news", "media", "articles", "video", "press"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/in-the-news-section/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "jsx": true
+  }
+}

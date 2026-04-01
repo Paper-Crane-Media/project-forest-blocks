@@ -26,7 +26,61 @@ $image              = $b->field( 'image' );
 ?>
 <?php $b->open_tag( 'splitter-image' ); ?>
 
-<?php if ( 'full_background' === $variant ) : ?>
+<?php if ( 'image_grid' === $variant ) : ?>
+
+	<?php $gallery = $b->field( 'gallery', [] ); ?>
+	<div class="bg-air">
+		<div class="flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-10">
+
+			<!-- Image grid -->
+			<div class="w-full shrink-0 p-6 lg:w-auto">
+				<?php if ( count( $gallery ) >= 4 ) : ?>
+					<div class="grid grid-cols-2 grid-rows-12 gap-1 lg:size-[39.75rem]">
+						<div class="relative col-start-1 row-start-1 row-end-5 overflow-hidden rounded-container-lg">
+							<img src="<?php echo esc_url( $gallery[0]['url'] ); ?>" alt="<?php echo esc_attr( $gallery[0]['alt'] ?? '' ); ?>" class="absolute inset-0 h-full w-full object-cover" />
+						</div>
+						<div class="relative col-start-1 row-start-5 row-end-13 overflow-hidden rounded-container-md">
+							<img src="<?php echo esc_url( $gallery[1]['url'] ); ?>" alt="<?php echo esc_attr( $gallery[1]['alt'] ?? '' ); ?>" class="absolute inset-0 h-full w-full object-cover" />
+						</div>
+						<div class="relative col-start-2 row-start-1 row-end-9 overflow-hidden rounded-container-md">
+							<img src="<?php echo esc_url( $gallery[2]['url'] ); ?>" alt="<?php echo esc_attr( $gallery[2]['alt'] ?? '' ); ?>" class="absolute inset-0 h-full w-full object-cover" />
+						</div>
+						<div class="relative col-start-2 row-start-9 row-end-13 overflow-hidden rounded-container-md">
+							<img src="<?php echo esc_url( $gallery[3]['url'] ); ?>" alt="<?php echo esc_attr( $gallery[3]['alt'] ?? '' ); ?>" class="absolute inset-0 h-full w-full object-cover" />
+						</div>
+					</div>
+				<?php endif; ?>
+			</div>
+
+			<!-- Content -->
+			<div data-stagger="true" class="flex w-full flex-col items-start gap-4 px-6 pb-6 lg:min-w-[30rem] lg:flex-1 lg:pl-8 lg:pr-20">
+
+				<?php if ( $heading ) : ?>
+					<h4 class="text-display-md font-heading font-semibold text-forest">
+						<?php echo esc_html( $heading ); ?>
+					</h4>
+				<?php endif; ?>
+
+				<?php if ( $subheading ) : ?>
+					<p class="text-display-sm font-body text-forest">
+						<?php echo esc_html( $subheading ); ?>
+					</p>
+				<?php endif; ?>
+
+				<?php if ( $body ) : ?>
+					<div class="wysiwyg text-body-lg text-forest">
+						<?php echo wp_kses_post( $body ); ?>
+					</div>
+				<?php endif; ?>
+
+				<?php echo fb_button( $cta, 'Learn More', 'mt-6' ); ?>
+
+			</div>
+
+		</div>
+	</div>
+
+<?php elseif ( 'full_background' === $variant ) : ?>
 
 	<?php $pattern_url = FOREST_BLOCKS_URL . 'assets/images/pattern-forest.png'; ?>
 	<div class="relative px-6 py-8 lg:px-8">
